@@ -33,7 +33,8 @@ test('custom controls minimize, maximize, restore and follow native window state
   test.setTimeout(60000);
   const { application, page } = await launchEditor();
   try {
-    expect(await application.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].isMenuBarVisible())).toBe(false);
+    // macOS has an application-wide menu; this window API applies to Windows/Linux.
+    if (process.platform !== 'darwin') expect(await application.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].isMenuBarVisible())).toBe(false);
     expect(await page.locator('.app-header').evaluate(element => getComputedStyle(element).getPropertyValue('-webkit-app-region'))).toBe('drag');
     expect(await page.getByRole('button', { name: 'Ilovani yopish', exact: true }).evaluate(element => getComputedStyle(element).getPropertyValue('-webkit-app-region'))).toBe('no-drag');
     await page.getByRole('button', { name: 'Oynani kattalashtirish', exact: true }).click();
@@ -44,7 +45,10 @@ test('custom controls minimize, maximize, restore and follow native window state
     await expect(page.getByRole('button', { name: 'Oynani tiklash', exact: true })).toBeVisible();
     await application.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].unmaximize());
     await expect(page.getByRole('button', { name: 'Oynani kattalashtirish', exact: true })).toBeVisible();
-    for (const width of [1100, 1280, 1500, 1920]) {
+    const availableWidth = await application.evaluate(({ screen }) => screen.getPrimaryDisplay().workAreaSize.width);
+    const widths = [1100, 1280, 1500, 1920].filter(width => width <= availableWidth);
+    expect(widths.length).toBeGreaterThan(0);
+    for (const width of widths) {
       await application.evaluate(({ BrowserWindow }, width) => BrowserWindow.getAllWindows()[0].setContentSize(width, 800), width);
       await expect.poll(() => page.evaluate(() => window.innerWidth)).toBe(width);
       await page.screenshot({ path: `.qa/custom-navigation-${width}.png` });

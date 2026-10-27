@@ -2,8 +2,9 @@ import { expect, test, type Locator, type Page } from '@playwright/test';
 
 async function openWorkspace(page: Page) {
   await page.goto('/');
+  // A hidden loading label can also mean React has not mounted yet.
+  await expect(page.getByRole('tablist', { name: 'Yaratish rejimi' })).toBeVisible({ timeout: 20_000 });
   await expect(page.getByText('Sahna tayyorlanmoqda…')).toBeHidden({ timeout: 20_000 });
-  await expect(page.getByRole('tablist', { name: 'Yaratish rejimi' })).toBeVisible();
   await expect(page.locator('#manual-workspace')).toBeVisible();
 }
 

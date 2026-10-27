@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 # Sources are fetched and SHA-256 verified by build-ffmpeg.mjs before this runs.
 build=$(cd "$1" && pwd)

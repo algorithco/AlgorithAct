@@ -24,8 +24,8 @@ export async function ensureFfmpegBundle(root,platform,arch,archivePath=process.
     const lock=await readFile(join(directory,'sources.json'));
     if(manifest.sourceLockSha256!==createHash('sha256').update(lock).digest('hex'))throw new Error('FFmpeg source lock changed. Run npm run build:ffmpeg again.');
   } else {
-  try{manifest=JSON.parse(await readFile(join(directory,`${platform}-${arch}.json`),'utf8'));}
-  catch{throw new Error(`No pinned FFmpeg bundle for ${platform}-${arch}. Run npm run build:ffmpeg. See resources/ffmpeg/README.md.`);}
+    try{manifest=JSON.parse(await readFile(join(directory,`${platform}-${arch}.json`),'utf8'));}
+    catch{throw new Error(`No pinned FFmpeg bundle for ${platform}-${arch}. Run npm run build:ffmpeg. See resources/ffmpeg/README.md.`);}
   }
   const extension=platform==='win32'?'.exe':'';
   if(manifest.platform!==platform||manifest.arch!==arch||!manifest.files?.some(file=>file.name===`ffmpeg${extension}`)||!manifest.files?.some(file=>file.name===`ffprobe${extension}`))throw new Error('Invalid FFmpeg bundle manifest.');

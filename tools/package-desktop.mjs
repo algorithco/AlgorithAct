@@ -37,6 +37,7 @@ try {
     appVersion: version, buildVersion: version, appBundleId: 'com.algorithact.desktop',
     icon: join(root, 'public/brand', platform === 'linux' ? 'algorithact-desktop.png' : `algorithact.${extension}`),
     asar: true, prune: false, overwrite: true, extraResource: runtime,
+    ...(platform === 'darwin' ? { osxSign: { identity: '-', identityValidation: false, optionsForFile: () => ({ hardenedRuntime: false }) } } : {}),
     ...(platform === 'win32' ? { win32metadata: { CompanyName: 'Algorithco', FileDescription: 'AlgorithAct', InternalName: 'AlgorithAct', OriginalFilename: 'AlgorithAct.exe', ProductName: 'AlgorithAct' } } : {}),
   });
   console.log(`Desktop app: ${paths[0]}`);

@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { chmod, copyFile, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -15,6 +15,8 @@ const prefix = join(build, 'install');
 await mkdir(sourceDirectory, { recursive: true });
 await mkdir(build, { recursive: true });
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
+const localPath = path => relative(root, path).replaceAll('\\', '/');
+const shellPath = path => process.platform === 'win32' ? path.replaceAll('\\', '/').replace(/^([a-z]):/i, (_, drive) => `/${drive.toLowerCase()}`) : path;
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, { cwd: root, stdio: 'inherit', windowsHide: true, ...options });
   if (result.error) throw result.error;
@@ -35,15 +37,15 @@ for (const source of sources) {
   if (!process.argv.includes('--sources-only')) {
     const directory = join(build, source.name);
     await mkdir(directory, { recursive: true });
-    run('tar', ['-xzf', archive, '-C', directory, '--strip-components=1']);
+    run('tar', ['-xzf', localPath(archive), '-C', localPath(directory), '--strip-components=1']);
   }
 }
 if (process.argv.includes('--sources-only')) {
   const { version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
   await mkdir(join(root, 'release/installer'), { recursive: true });
-  run('tar', ['-czf', join(root, 'release/installer', `AlgorithAct-FFmpeg-Sources-${version}.tar.gz`), '-C', root, 'resources/ffmpeg/sources.json', 'resources/ffmpeg/README.md', 'tools/build-ffmpeg.mjs', 'tools/compile-ffmpeg.sh', '.qa/ffmpeg-sources']);
+  run('tar', ['-czf', `release/installer/AlgorithAct-FFmpeg-Sources-${version}.tar.gz`, 'resources/ffmpeg/sources.json', 'resources/ffmpeg/README.md', 'tools/build-ffmpeg.mjs', 'tools/compile-ffmpeg.sh', '.qa/ffmpeg-sources']);
 } else {
-  run('bash', [join(root, 'tools/compile-ffmpeg.sh'), build, prefix]);
+  run('bash', [shellPath(join(root, 'tools/compile-ffmpeg.sh')), shellPath(build), shellPath(prefix)]);
   const directory = join(root, 'resources/ffmpeg', target);
   await mkdir(join(directory, 'LICENSES'), { recursive: true });
   const extension = process.platform === 'win32' ? '.exe' : '';

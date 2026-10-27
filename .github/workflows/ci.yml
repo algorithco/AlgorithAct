@@ -34,6 +34,9 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
+        if: runner.os == 'Windows'
+      - run: xvfb-run --auto-servernum npm run build
+        if: runner.os == 'Linux'
       - run: git diff --exit-code -- public/content tests/fixtures/project.v1.json
         name: Verify generated content is current
       - run: npm audit --audit-level=high

@@ -9,6 +9,7 @@ Use Node.js 24 LTS and `npm ci`. The repository is a desktop application, so `pr
 | `npm run dev` | Loopback-only Vite web preview on port 5173 |
 | `npm run dev:desktop` | Build main/preload and launch Electron against Vite |
 | `npm run build:content` | Generate built-in character/motion JSON in `public/content/` |
+| `npm run build:icons` | Generate desktop icons from the original brand artwork using Electron |
 | `npm run prepare:ffmpeg -- --download` | Fetch and verify the pinned Windows runtime |
 | `npm run typecheck` | TypeScript strict check |
 | `npm run lint` | ESLint and dependency-cruiser boundaries/cycles |
@@ -22,7 +23,7 @@ Use Node.js 24 LTS and `npm ci`. The repository is a desktop application, so `pr
 | `npm start` | Launch the packaged Windows app |
 | `npm run preview` | Preview the production web build |
 
-`npm start` is not a development command. It requires a prior Windows package. Runtime executables, builds, reports and `.qa/` files are ignored by Git.
+`npm start` is not a development command. It requires a prior Windows package. Runtime executables, builds, reports and `.qa/` files are ignored by Git. Icon generation uses Electron; headless Linux builds need a display server, for example `xvfb-run --auto-servernum npm run build`, as used in CI.
 
 ## Source map
 

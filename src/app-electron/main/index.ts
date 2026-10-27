@@ -38,7 +38,7 @@ async function atomicWrite(path:string,bytes:Uint8Array,backup:boolean){
 }
 async function limitedRead(path:string){if((await stat(path)).size>100_000_000)throw new Error('Fayl 100 MB dan katta.');return new Uint8Array(await readFile(path));}
 function secureWindow(show:boolean){
-  const icon=join(appRoot,devUrl?'public/brand':'dist/brand',process.platform==='win32'?'algorithact.ico':'algorithact-icon.png');
+  const icon=join(appRoot,devUrl?'public/brand':'dist/brand',process.platform==='win32'?'algorithact.ico':'algorithact-desktop.png');
   const win=new BrowserWindow({width:1500,height:980,minWidth:1100,minHeight:740,show,backgroundColor:'#111214',title:'AlgorithAct',icon,autoHideMenuBar:true,webPreferences:{preload,contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:show}});
   win.webContents.setWindowOpenHandler(()=>({action:'deny'}));win.webContents.on('will-navigate',event=>event.preventDefault());
   win.webContents.session.setPermissionRequestHandler((_contents,_permission,callback)=>callback(false));

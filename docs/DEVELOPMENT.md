@@ -23,7 +23,7 @@ Use Node.js 24 LTS and `npm ci`. The repository is a desktop application, so `pr
 | `npm start` | Launch the packaged Windows app |
 | `npm run preview` | Preview the production web build |
 
-`npm start` is not a development command. It requires a prior Windows package. Runtime executables, builds, reports and `.qa/` files are ignored by Git. Icon generation uses Electron; headless Linux builds need a display server, for example `xvfb-run --auto-servernum npm run build`, as used in CI.
+`npm start` is not a development command. It requires a prior Windows package. Runtime executables, builds, reports and `.qa/` files are ignored by Git. Desktop icon regeneration uses Electron on Windows. Other platforms use the checked-in icon assets, so web/core builds do not need a display server or a sandbox exception.
 
 ## Source map
 

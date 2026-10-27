@@ -7,7 +7,9 @@ const script = fileURLToPath(import.meta.url);
 const root = resolve(dirname(script), '..');
 const sizes = [16, 20, 24, 32, 40, 48, 64, 96, 128, 192, 256];
 
-if (!process.versions.electron) {
+if (process.platform !== 'win32') {
+  console.log('Using checked-in desktop icons. Regenerate Windows icon assets on Windows.');
+} else if (!process.versions.electron) {
   const { default: electron } = await import('electron');
   const env = { ...process.env };
   delete env.ELECTRON_RUN_AS_NODE;

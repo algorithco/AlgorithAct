@@ -68,7 +68,9 @@ test('export startup failures are readable and preserve an existing output',asyn
     await application.evaluate(({dialog},paths)=>{dialog.showOpenDialog=async()=>({canceled:false,filePaths:[paths.input]});dialog.showSaveDialog=async()=>({canceled:false,filePath:paths.output});},{input,output});
     await page.getByRole('button',{name:'Loyiha ochish',exact:true}).click();await expect(page.getByLabel('Loyiha nomi',{exact:true})).toHaveValue('bundled-failure');
     await page.getByRole('button',{name:'Eksport',exact:true}).click();await page.getByRole('button',{name:/^MP4/}).click();await page.getByRole('button',{name:'Eksport qilish',exact:true}).click();
-    const error=page.getByRole('alert');await expect(error).toContainText('Eksport bajarilmadi');await expect(error).toContainText('FFmpeg fayli topilmadi');
+    // The hidden renderer must start and complete the FFprobe preflight first.
+    // Cold CI runners can take longer than the default five-second assertion wait.
+    const error=page.getByRole('alert');await expect(error).toContainText('Eksport bajarilmadi',{timeout:25000});await expect(error).toContainText('FFmpeg fayli topilmadi');
     await expect(error).not.toContainText('Error invoking remote method');
     await expect(page.getByRole('button',{name:'Eksport qilish',exact:true})).toBeEnabled();
     expect(await readFile(output,'utf8')).toBe('previous-output');

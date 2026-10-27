@@ -1,0 +1,8 @@
+{
+  "@pixi/colord": {
+    "version": "2.9.6",
+    "file": "colord.LICENSE.txt",
+    "source": "https://github.com/pixijs/colord/blob/5344fbf77b736f81cd33c21050021bc09bc9dd1d/LICENSE.md",
+    "reason": "The published npm tarball omits its upstream license file."
+  }
+}

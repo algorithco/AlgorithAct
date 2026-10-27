@@ -1,0 +1,274 @@
+/* Readable, consistent controls shared by the property and asset panels. */
+.studio-app .inspector-panel,
+.studio-app .library-panel {
+  background: var(--panel);
+  min-width: 0;
+}
+
+.studio-app .inspector-panel > .panel-heading,
+.studio-app .library-panel > .panel-heading {
+  padding: 18px 20px;
+  min-height: 58px;
+  flex-shrink: 0;
+}
+
+.studio-app .inspector-panel .panel-heading h2,
+.studio-app .library-panel .panel-heading h2 {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.2px;
+}
+
+.studio-app .inspector-scroll {
+  min-height: 0;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.studio-app .inspector-panel .selected-object {
+  padding: 18px;
+  gap: 12px;
+}
+
+.studio-app .inspector-panel .selected-object > div { flex: 1; gap: 3px; }
+.studio-app .inspector-panel .selected-object input {
+  min-height: 34px;
+  padding: 4px 6px;
+  margin-left: -6px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.studio-app .inspector-panel .selected-object input:hover:not(:disabled) { background: var(--surface); }
+.studio-app .inspector-panel .selected-object > div > span {
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .6px;
+  color: var(--muted);
+}
+.studio-app .inspector-panel .object-avatar {
+  width: 44px;
+  height: 48px;
+  border-radius: 10px;
+  background: #ffd50010;
+  color: var(--accent);
+  border-color: #ffd50026;
+}
+.studio-app .inspector-panel .object-avatar.audio {
+  color: var(--audio);
+  background: var(--audio-dim);
+  border-color: #88c8b82b;
+}
+
+.studio-app .inspector-panel .inspector-section {
+  padding: 18px;
+  border-color: var(--border);
+}
+.studio-app .inspector-panel .inspector-section-title {
+  min-height: 28px;
+  margin-bottom: 14px;
+  gap: 9px;
+  color: var(--muted);
+}
+.studio-app .inspector-panel .inspector-section-title h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.5;
+}
+.studio-app .inspector-panel .inspector-section-title > button {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.studio-app .inspector-panel .inspector-section-title > button:hover { background: var(--surface); }
+.studio-app .inspector-panel .field-label {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 16px 0 10px;
+}
+.studio-app .inspector-panel .field-pair { gap: 10px; margin-bottom: 12px; align-items: end; }
+
+.studio-app .inspector-panel .property-number-field {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+  height: auto;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+.studio-app .inspector-panel .property-number-field > .number-label {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 16px;
+}
+.studio-app .inspector-panel .property-number-field > .number-control {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 10px;
+  background: var(--bg);
+  color: var(--text);
+}
+.studio-app .inspector-panel .number-control:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px #ffd50014;
+}
+.studio-app .inspector-panel .number-control input {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text);
+  text-align: left;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.studio-app .inspector-panel .number-control input:focus-visible { outline: none; }
+.studio-app .inspector-panel .number-control small { color: var(--muted); font-size: 12px; }
+.studio-app .inspector-panel .keyable-field .number-control { padding-right: 33px; }
+.studio-app .inspector-panel .property-key {
+  right: 5px;
+  bottom: 6px;
+  width: 28px;
+  height: 28px;
+  opacity: 1;
+  color: #a1a1aa;
+  background: transparent;
+  border-radius: 5px;
+}
+.studio-app .inspector-panel .property-key:hover:not(:disabled) { color: var(--accent); background: #ffd50016; }
+.studio-app .inspector-panel .opacity-label { margin-bottom: 0; min-height: 28px; }
+.studio-app .inspector-panel .opacity-label > span { font-size: 12px; color: var(--text); }
+.studio-app .inspector-panel .opacity-label > button { width: 28px; height: 28px; color: var(--muted); border-radius: 5px; }
+.studio-app .inspector-panel .opacity-label > button:hover { color: var(--accent); background: var(--surface); }
+.studio-app .inspector-panel .wide-range { height: 20px; margin-top: 3px; }
+
+.studio-app .inspector-panel .pose-button {
+  min-height: 42px;
+  padding: 0 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+  justify-content: flex-start;
+}
+.studio-app .inspector-panel .pose-button:hover:not(:disabled) { border-color: #ffd50055; background: #ffd5000d; }
+.studio-app .inspector-panel .pose-button > svg { color: var(--accent); margin-left: 0; }
+.studio-app .inspector-panel .pose-button > kbd { margin-right: 0; font-size: 11px; background: var(--bg); border-color: var(--border); color: var(--muted); }
+.studio-app .inspector-panel .inspector-note { font-size: 12px; line-height: 1.7; color: var(--muted); margin-top: 12px; }
+.studio-app .inspector-panel .palette-options { gap: 8px; flex-wrap: wrap; }
+.studio-app .inspector-panel .palette-options > button,
+.studio-app .inspector-panel .palette-options > input {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #ffffff38;
+  box-shadow: none;
+}
+.studio-app .inspector-panel .palette-options > input::-webkit-color-swatch { border-radius: 5px; }
+.studio-app .inspector-panel .palette-options > button[aria-pressed=true] { outline: 2px solid var(--accent); outline-offset: 2px; }
+.studio-app .inspector-panel .inspector-section > textarea {
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 12px;
+  min-height: 100px;
+  border-radius: 8px;
+  background: var(--bg);
+  border-color: var(--border);
+}
+.studio-app .inspector-panel .text-color-field {
+  height: 40px;
+  padding: 0 10px;
+  font-size: 12px;
+  color: var(--muted);
+  border-radius: 8px;
+  background: var(--bg);
+  border-color: var(--border);
+}
+.studio-app .inspector-panel .text-color-field > input { width: 30px; height: 30px; }
+.studio-app .inspector-panel .checkbox-field { min-height: 32px; font-size: 13px; color: var(--text); }
+.studio-app .inspector-panel .checkbox-field input { width: 17px; height: 17px; }
+.studio-app .inspector-panel .inspector-section select { min-height: 42px; font-size: 13px; padding: 9px; border-radius: 8px; background: var(--bg); border-color: var(--border); }
+.studio-app .inspector-panel .key-path { gap: 10px; font-size: 12px; color: var(--text); overflow-wrap: anywhere; }
+.studio-app .inspector-panel .key-path > span { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.studio-app .inspector-panel .inspector-footer { min-height: 40px; padding: 10px 18px; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+.studio-app .inspector-panel .inspector-footer > span:last-child { font-size: 11px; color: var(--muted); }
+.studio-app .inspector-panel .empty-inspector { padding: 40px 20px; }
+.studio-app .inspector-panel .empty-inspector > svg { color: var(--accent); }
+.studio-app .inspector-panel .empty-inspector h3 { font-size: 17px; color: var(--text); }
+.studio-app .inspector-panel .empty-inspector p { font-size: 13px; line-height: 1.7; color: var(--muted); }
+.studio-app .inspector-panel .project-info { font-size: 12px; gap: 16px 10px; color: var(--muted); border-color: var(--border); }
+.studio-app .inspector-panel .project-info strong { color: var(--text); overflow-wrap: anywhere; }
+.studio-app .inspector-panel .locked-notice { font-size: 12px; }
+
+.studio-app .audio-inspector .audio-filename { font-size: 14px; font-weight: 600; max-width: 190px; }
+.studio-app .audio-inspector .audio-gain-input { gap: 5px; }
+.studio-app .audio-inspector .audio-gain-input input { width: 54px; height: 36px; font-size: 14px; padding: 5px 8px; }
+.studio-app .audio-inspector .audio-gain-input > span { font-size: 12px; }
+.studio-app .audio-inspector .audio-seconds > span { font-size: 12px; line-height: 1.5; }
+.studio-app .audio-inspector .audio-seconds .number-field { height: 40px; border-radius: 8px; padding: 0 10px; background: var(--bg); border-color: var(--border); }
+.studio-app .audio-inspector .number-field > input { font-size: 14px; text-align: left; }
+.studio-app .audio-inspector .number-field > small { font-size: 12px; }
+.studio-app .audio-inspector .audio-mute-button,
+.studio-app .audio-inspector .delete-audio { min-height: 42px; font-size: 13px; border-radius: 8px; }
+
+.studio-app .library-panel { overflow: hidden; }
+.studio-app .library-panel > .panel-heading { padding-bottom: 10px; }
+.studio-app .library-panel .panel-intro { font-size: 13px; line-height: 1.6; color: var(--muted); padding: 0 20px 18px; }
+.studio-app .library-panel .count-badge { min-width: 26px; padding: 4px 7px; font-size: 12px; color: var(--muted); background: var(--surface); border-color: var(--border); }
+.studio-app .library-panel .search-field { min-height: 44px; padding: 0 12px; margin: 0 20px 20px; gap: 9px; background: var(--bg); border-color: var(--border); border-radius: 8px; flex-shrink: 0; }
+.studio-app .library-panel .search-field input { font-size: 14px; height: 42px; color: var(--text); }
+.studio-app .library-panel .search-field:focus-within { border-color: var(--accent); }
+.studio-app .library-panel .search-field input:focus-visible { outline: none; }
+.studio-app .library-panel .search-field button { width: 28px; height: 28px; border-radius: 5px; flex-shrink: 0; }
+.studio-app .library-panel .search-field button:hover { background: var(--surface); }
+.studio-app .library-panel .library-scroll { padding: 0 20px 20px; overscroll-behavior: contain; }
+.studio-app .library-panel .section-label { font-size: 12px; letter-spacing: 0; font-weight: 600; color: #d4d4d8; margin-bottom: 14px; }
+.studio-app .library-panel .section-label > span { font-size: 11px; color: var(--muted); font-weight: 400; }
+.studio-app .library-panel .character-grid { gap: 12px; }
+.studio-app .library-panel .character-preview { height: 166px; border-radius: 10px; }
+.studio-app .library-panel .character-preview > svg { height: 146px; width: 100px; }
+.studio-app .library-panel .character-card { border-radius: 10px; gap: 12px; }
+.studio-app .library-panel .card-add { width: 28px; height: 28px; border-radius: 7px; opacity: 1; bottom: 9px; right: 9px; background: var(--accent); color: #111; }
+.studio-app .library-panel .character-label { font-size: 13px; color: var(--text); }
+.studio-app .library-panel .character-label > span + span { font-size: 11px; color: var(--muted); padding: 2px 5px; border-color: var(--border); }
+.studio-app .library-panel .library-note { margin-top: 24px; padding-top: 20px; border-color: var(--border); }
+.studio-app .library-panel .note-icon { color: var(--muted); }
+.studio-app .library-panel .library-note strong { font-size: 13px; color: var(--text); }
+.studio-app .library-panel .library-note p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+.studio-app .library-panel .library-footer { min-height: 48px; padding: 12px 20px; font-size: 12px; color: var(--muted); border-color: var(--border); flex-shrink: 0; }
+.studio-app .library-panel .library-footer > svg { color: var(--accent); }
+.studio-app .library-panel .motion-list { gap: 10px; }
+.studio-app .library-panel .motion-card { min-height: 74px; padding: 12px; gap: 12px; background: var(--surface); border-color: var(--border); border-radius: 10px; }
+.studio-app .library-panel .motion-card:hover { background: #ffd5000b; border-color: #ffd50055; }
+.studio-app .library-panel .motion-icon { width: 40px; height: 42px; border-radius: 8px; flex-shrink: 0; }
+.studio-app .library-panel .motion-card strong { font-size: 14px; color: var(--text); }
+.studio-app .library-panel .motion-card span { font-size: 12px; color: var(--muted); }
+.studio-app .library-panel .motion-card > svg { color: var(--muted); }
+.studio-app .library-panel .subtle-note { font-size: 12px; line-height: 1.7; color: var(--muted); }
+.studio-app .library-panel .add-object { min-height: 52px; font-size: 14px; padding: 12px; border-radius: 9px; color: var(--text); border-color: var(--border); background: var(--surface); }
+.studio-app .library-panel .add-object:hover { background: #ffd5000b; border-color: #ffd50055; }
+.studio-app .library-panel .background-swatches { gap: 9px; grid-template-columns: repeat(3,1fr); }
+.studio-app .library-panel .background-swatches button { height: 44px; aspect-ratio: auto; border-radius: 8px; border-color: #ffffff44; }
+.studio-app .library-panel .background-swatches button[aria-pressed=true] { outline: 2px solid var(--accent); outline-offset: 2px; }
+.studio-app .library-panel .custom-color { min-height: 40px; font-size: 13px; color: var(--text); }
+.studio-app .library-panel .custom-color input { width: 42px; height: 36px; border-radius: 8px; }
+.studio-app .library-panel .library-empty { padding: 24px 5px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; color: var(--muted); }
+.studio-app .library-panel .library-empty strong { font-size: 15px; color: var(--text); }
+.studio-app .library-panel .library-empty p { font-size: 13px; line-height: 1.7; }
+.studio-app .library-panel .library-empty button { min-height: 40px; padding: 0 14px; font-size: 13px; border-radius: 8px; border: 1px solid var(--border); color: var(--text); background: var(--surface); }

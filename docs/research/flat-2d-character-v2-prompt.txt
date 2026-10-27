@@ -1,0 +1,15 @@
+Method: built-in image_gen edit; imagegen skill.
+Input: docs/research/assets/original-character-directions-v1.png
+Output: docs/research/assets/original-character-directions-v2-flat-2d.png
+Date: 2026-10-25
+
+Use case: style-transfer.
+Asset type: corrected flat 2D character concept comparison board for a video animation editor.
+Input image: the provided character comparison board is the EDIT TARGET, including all three original characters and their expression studies.
+Primary request: change the rendering style ONLY into genuinely FLAT 2D CUTOUT CARTOON ART. The current image looks shaded and volumetric. The user explicitly requires flat 2D for now; 3D versions may be made separately in the future.
+Keep unchanged: the three character identities, A human / B robot / C geometric mascot, their hair/head silhouettes, clothing, individual colors, poses, approximate proportions, facial expressions, three-column arrangement, large full bodies and two smaller expression studies below each, and labels "A", "B", "C".
+Required rendering: use crisp vector-like filled shapes, ONE solid opaque color per region, consistent dark clean outlines and simple graphic facial features. Skin must be a uniform solid fill; clothing must be flat blocks; robot armor must be flat solid shapes with outline-defined joints. Keep the hands readable and connected. All shapes must look like a flat paper-cutout character intended for an SVG rig.
+Remove ALL gradients, soft shadows, cast shadows under the feet, highlights, reflective surfaces, rim lighting, metallic gloss, bevels, ambient occlusion, surface modeling, fabric texture and extra fold shading. No 3D volume rendering. Do not add even cell-shading patches; use flat fills and contour lines only.
+Backdrop: plain white with light straight column separators. No objects or environment.
+Text: preserve ONLY "A", "B", "C"; no additional text.
+Output intent: flat 2D visual-direction preview, not an animation atlas or an already rigged asset.

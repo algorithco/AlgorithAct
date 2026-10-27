@@ -1,0 +1,12 @@
+AlgorithAct uses unmodified FFmpeg executables and shared libraries.
+Copyright (c) 2000-2026 the FFmpeg developers.
+FFmpeg is distributed under the GNU Lesser General Public License, version 3 or later.
+The adjacent COPYING.LGPLv3 and COPYING.GPLv3 contain the license texts.
+FFmpeg is a separate process; these executables and DLLs can be replaced by compatible builds.
+
+Version: N-128094-g31855b2a70-20261025
+FFmpeg source: https://github.com/FFmpeg/FFmpeg/tree/31855b2a70
+Build scripts and dependency source locations: https://github.com/BtbN/FFmpeg-Builds
+Build configuration: BUILD-CONFIG.txt
+Upstream project: https://ffmpeg.org/
+No modifications were made to the bundled FFmpeg binaries.

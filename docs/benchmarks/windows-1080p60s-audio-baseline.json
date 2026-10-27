@@ -1,0 +1,61 @@
+{
+  "completed": true,
+  "passed": false,
+  "correctnessPassed": true,
+  "performanceTargetPassed": false,
+  "startedAt": "2026-10-25T14:51:17.983Z",
+  "scene": "one vector character, four text layers, wave motion, stereo audio markers",
+  "size": "1920x1080",
+  "fps": 30,
+  "frames": 1800,
+  "durationSeconds": 60,
+  "elapsedSeconds": 142.845,
+  "exportSecondsPerVideoSecond": 2.381,
+  "peakWorkingSetMiB": 1354.4,
+  "fileBytes": 310060,
+  "markerMs": [
+    1000.0208333333334,
+    59000.020833333336
+  ],
+  "markerErrorMs": [
+    0.02083333333337123,
+    0.020833333335758653
+  ],
+  "metadata": {
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "30/1",
+        "start_time": "0.000000",
+        "duration": "60.000000",
+        "nb_read_frames": "1800"
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 2,
+        "avg_frame_rate": "0/0",
+        "start_time": "0.000000",
+        "duration": "60.000000",
+        "nb_read_frames": "2813"
+      }
+    ],
+    "format": {
+      "duration": "60.000000"
+    }
+  },
+  "environment": {
+    "os": "win32 10.0.26200",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12400",
+    "logicalCpus": 12,
+    "totalRamGiB": 15.8,
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 730 (0x00004692) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.7559.236 Electron/40.10.6 Safari/537.36",
+    "ffmpeg": "ffmpeg version N-128094-g31855b2a70-20261025 Copyright (c) 2000-2026 the FFmpeg developers\r"
+  },
+  "scope": "Single Windows environment, one export, no 10-character stress test or multi-OS validation."
+}

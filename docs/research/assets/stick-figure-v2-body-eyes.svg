@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="768" viewBox="0 0 768 768" role="img" aria-labelledby="title">
+  <title id="title">Qalinroq tanali va ko‘zli sodda 2D figura</title>
+  <rect width="768" height="768" fill="#FFFFFF" />
+  <g id="limbs" fill="none" stroke="#17191D" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="384" y1="224" x2="384" y2="270" />
+    <polyline points="355,275 315,328 280,394" />
+    <polyline points="413,275 453,328 488,394" />
+    <polyline points="373,410 338,516 310,628" />
+    <polyline points="395,410 430,516 458,628" />
+  </g>
+  <polygon id="torso" points="355,266 413,266 404,414 364,414" fill="#17191D" stroke="#17191D" stroke-width="10" stroke-linejoin="round" />
+  <circle id="head" cx="384" cy="184" r="42" fill="#17191D" />
+  <g id="eyes" fill="#FFFFFF">
+    <ellipse cx="370" cy="181" rx="4" ry="7" />
+    <ellipse cx="398" cy="181" rx="4" ry="7" />
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+  "renderer": "ANGLE SwiftShader, Arial on Windows",
+  "files": [
+    {
+      "file": "rest.png",
+      "time": 0,
+      "rgbaHash": "3f862c4718e69fcbb8c14b9b8ab3f2a4154b42eb38da6f36c2183f71263984e8",
+      "pngHash": "9935515ea741cfcd63c10a58b4f87a3ca6645cae906e224969370ac944bb2b23"
+    },
+    {
+      "file": "wave-0800.png",
+      "time": 800,
+      "rgbaHash": "977726d91c8899d2955d6f2b1cda04220f3cae4b3797e39d6ff9190c2b8aa629",
+      "pngHash": "dfab71275f4fd5f10bf0e97a12da0a8ab4675e228975bbf5fee9ade794dc7313"
+    },
+    {
+      "file": "wave-1600.png",
+      "time": 1600,
+      "rgbaHash": "d0c0255772096ff9d3c5c60ef4eb6c8e7ad34534d739b8a2c4e33a2ca34032f7",
+      "pngHash": "4142c6713f376ccfb35d404f755000c6078d60af11ce1ca8070a40ff9cec6a0c"
+    },
+    {
+      "file": "clip-ended.png",
+      "time": 5000,
+      "rgbaHash": "3f862c4718e69fcbb8c14b9b8ab3f2a4154b42eb38da6f36c2183f71263984e8",
+      "pngHash": "9935515ea741cfcd63c10a58b4f87a3ca6645cae906e224969370ac944bb2b23"
+    },
+    {
+      "file": "camera.png",
+      "time": 800,
+      "rgbaHash": "1737d516200f0cb27cbb434c9971a46e6a86d68be0f193baf4e78e72aba7eed9",
+      "pngHash": "c8145b912deaed57a416fe1ab43546c8e92a45ca339c077391e5fe621bd146bb"
+    }
+  ]
+}

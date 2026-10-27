@@ -73,6 +73,18 @@ npm run benchmark:export -- --continuous
 
 The benchmark exports 1080p/30 video with stereo markers. `--seconds=10` is a short profile and `--software` uses SwiftShader. Results are written to `docs/benchmarks/`; include the hardware, runtime, scene and arguments when quoting timings. Existing measurements are dated evidence, not a universal performance claim.
 
+## Separate test lifecycles
+
+The same suite can run in three stages:
+
+```sh
+npm run test:e2e:browser -- --workers=1
+npm run test:e2e:desktop -- --workers=1
+npm run test:e2e:golden -- --workers=1
+```
+
+Desktop tests use only Electron and do not start Vite. Browser workflows and golden frames each own a fresh Vite lifecycle. CI uses these stages because Windows Electron process teardown can interrupt a development server sharing the same test process tree. All existing assertions and pixel thresholds remain in place. Desktop tests still require the environment setup above.
+
 ## CI scope
 
 The quality jobs run core checks/builds on Ubuntu and Windows. The Windows desktop job prepares the pinned media runtime, packages the application and runs browser, native, packaged and golden checks. Failure artifacts include reports and relevant QA images/metrics; packaged installers and user media are not uploaded. No cross-platform desktop certification or code signing is implied by these jobs.

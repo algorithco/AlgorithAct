@@ -54,14 +54,18 @@ jobs:
       - run: npx playwright install chrome
       - run: npm run prepare:ffmpeg -- --download
       - run: npm run package:win
-      - name: Browser, native, packaged and golden tests
+      - name: Browser workflows
+        run: npm run test:e2e:browser -- --workers=1
+      - name: Native and packaged desktop tests
         shell: pwsh
         run: |
           $env:ANIM_FFMPEG_PATH = (Resolve-Path 'resources/ffmpeg/win32-x64/ffmpeg.exe').Path
           $env:ANIM_FFPROBE_PATH = (Resolve-Path 'resources/ffmpeg/win32-x64/ffprobe.exe').Path
           $env:ANIM_PACKAGED_APP = (Resolve-Path 'release/AlgorithAct-win32-x64/AlgorithAct.exe').Path
           $env:ANIM_DESKTOP_EXECUTABLE = $env:ANIM_PACKAGED_APP
-          npm run test:e2e -- --workers=1
+          npm run test:e2e:desktop -- --workers=1
+      - name: Golden frames in a fresh browser/server lifecycle
+        run: npm run test:e2e:golden -- --workers=1
       - name: Upload failure diagnostics
         if: failure()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

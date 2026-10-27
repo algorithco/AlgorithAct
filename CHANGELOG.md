@@ -2,7 +2,7 @@
 
 Version 0.1.0 is the first desktop alpha for Windows, macOS and Linux.
 
-## Unreleased
+## 0.1.0 alpha — 2026-10-27
 
 - Crisp desktop icon variants generated from the original artwork.
 - Custom window controls with native state synchronization and save/discard/cancel handling on close.
@@ -12,8 +12,6 @@ Version 0.1.0 is the first desktop alpha for Windows, macOS and Linux.
 - PR CI, dependency update configuration and local documentation link checks.
 - Explicit checksum-verified download of the pinned Windows FFmpeg runtime.
 - Patched Electron and Vitest toolchain versions before public source publication.
-
-## 0.1.0 alpha — 2026-10-27
 
 - Local React/PixiJS/Electron 2D workspace, two original rigs and five reusable motions.
 - Keyframes, easing, pose editing, transforms, text/images, camera evaluation and undo/redo.

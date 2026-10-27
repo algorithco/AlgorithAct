@@ -4,6 +4,9 @@ Version 0.1.0 is the initial alpha source snapshot. This file does not announce 
 
 ## Unreleased
 
+- Crisp desktop icon variants generated from the original artwork.
+- Custom window controls with native state synchronization and save/discard/cancel handling on close.
+
 - English/Uzbek project documentation, contribution/security policies and GitHub issue/PR templates.
 - MIT licensing, third-party notices and generated dependency license texts in builds.
 - PR CI, dependency update configuration and local documentation link checks.

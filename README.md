@@ -13,7 +13,7 @@
 
 <p align="center">English · <a href="README.uz.md">O‘zbekcha</a><br /><a href="docs/GETTING_STARTED.md">Get started</a> · <a href="docs/USER_GUIDE.md">User guide</a> · <a href="CONTRIBUTING.md">Contribute</a> · <a href="docs/ROADMAP.md">Roadmap</a></p>
 
-![AlgorithAct's workspace with a character, a large canvas, an inspector and an animation timeline](docs/qa/workspace-canvas.png)
+![AlgorithAct's workspace with a character, a large canvas, an inspector and an animation timeline](docs/images/workspace.png)
 
 AlgorithAct brings characters, reusable motions, keyframes, text, images and audio into one local workspace. Animate a scene, save everything in a portable `.anim` project, and export a still frame or a video with sound. Editing runs locally and does not require an account or a cloud service.
 

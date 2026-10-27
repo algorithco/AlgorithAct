@@ -6,7 +6,7 @@
 
 <p align="center"><a href="README.md">English</a> · O‘zbekcha · <a href="LICENSE">MIT</a> · v0.1.0 alpha</p>
 
-![AlgorithAct muharriri: katta sahna, personaj, xususiyatlar va timeline](docs/qa/workspace-canvas.png)
+![AlgorithAct muharriri: katta sahna, personaj, xususiyatlar va timeline](docs/images/workspace.png)
 
 AlgorithAct personaj, tayyor harakat, keyframe, matn, rasm va audioni bitta lokal ish maydonida birlashtiradi. Loyihani aktivlari bilan `.anim` faylida saqlash, PNG kadr yoki ovozli video eksport qilish mumkin. Tahrirlash uchun akkaunt va bulut xizmati talab qilinmaydi.
 

@@ -60,6 +60,7 @@ jobs:
           $env:ANIM_FFMPEG_PATH = (Resolve-Path 'resources/ffmpeg/win32-x64/ffmpeg.exe').Path
           $env:ANIM_FFPROBE_PATH = (Resolve-Path 'resources/ffmpeg/win32-x64/ffprobe.exe').Path
           $env:ANIM_PACKAGED_APP = (Resolve-Path 'release/AlgorithAct-win32-x64/AlgorithAct.exe').Path
+          $env:ANIM_DESKTOP_EXECUTABLE = $env:ANIM_PACKAGED_APP
           npm run test:e2e -- --workers=1
       - name: Upload failure diagnostics
         if: failure()

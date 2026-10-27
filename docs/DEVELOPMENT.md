@@ -53,6 +53,7 @@ Generated `public/content/` is checked in so a fresh development launch has buil
 | `ANIM_FFPROBE_PATH` | Explicit FFprobe executable |
 | `ANIM_FFMPEG_ARCHIVE` | Local pinned FFmpeg ZIP used by preparation/packaging |
 | `ANIM_PACKAGED_APP` | Executable for packaged export tests |
+| `ANIM_DESKTOP_EXECUTABLE` | Optional packaged executable for window-control tests |
 | `HISTORY_PROPERTY_RUNS` | History property-test iteration count |
 
 No `.env` file, API keys or cloud account are required. Do not point `ANIM_DEV_URL` at an untrusted server; it is a development override for the application's renderer.

@@ -43,6 +43,12 @@ Desktop saves use a temporary file and rename, preserving the preceding destinat
 
 On Windows, desktop recovery is stored at `%APPDATA%/algorithco-animation/recovery/latest.anim`. The legacy directory name intentionally preserves existing data. Browser recovery uses the `algorithco-studio` IndexedDB database in that browser profile and can be lost if site data is cleared. Recovery and saved media are unencrypted. The installer does not delete project files or recovery data when uninstalling.
 
+## Desktop window controls
+
+Drag an empty part of the header to move the window. The top-right buttons minimize, maximize/restore and close it. Alt+F4 uses the same close flow.
+
+A project with unsaved changes offers **Bekor qilish** (Cancel), **Saqlamasdan chiqish** (Exit without saving) and **Saqlash va chiqish** (Save and exit). A cancelled or failed save keeps the app open. Confirmed exit attempts a recovery write first; recovery storage failure does not prevent an explicitly confirmed discard. Closing during export offers confirmation and stops the encoder before the last window exits.
+
 ## Export
 
 PNG captures the current frame. In desktop mode, MP4 uses OpenH264/H.264 with AAC audio; WebM uses VP9 with Opus audio. Only one export runs at a time. The job evaluates frames, renders offscreen, mixes audio and validates the encoded file with FFprobe. The final destination is replaced only after successful completion; cancellation preserves an existing output file.

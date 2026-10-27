@@ -46,6 +46,8 @@ npm run test:e2e -- tests/e2e/packaged-export.spec.ts --project=workflows --work
 
 The child app has PATH and media-tool overrides cleared, so these checks exercise the bundled executables and DLLs. They verify audio/video dimensions, duration and frame counts, plus a readable startup failure preserving the previous output.
 
+Window-control tests also cover minimize/maximize, keyboard-accessible close confirmation, cancelled/failed saves, recovery failure and stopping an active export. Set `ANIM_DESKTOP_EXECUTABLE` to the packaged executable to exercise those tests against the distributed app; CI uses this mode.
+
 ## Golden frames
 
 ```sh

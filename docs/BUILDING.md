@@ -1,6 +1,39 @@
 # Building and releases
 
-The validated packaging target is **Windows x64**. Other targets require their own runtime manifests, packaging and QA. Local source publication and CI do not automatically create a GitHub Release.
+The desktop release workflow builds and tests **Windows x64, macOS Intel/Apple Silicon and Linux x64/ARM64** on matching native GitHub runners.
+
+## Cross-platform packages
+
+| Platform | Native runner | Artifacts |
+| --- | --- | --- |
+| Windows x64 | `windows-latest` | NSIS `.exe` |
+| macOS Intel | `macos-15-intel` | `.dmg`, `.zip` |
+| macOS Apple Silicon | `macos-15` | `.dmg`, `.zip` |
+| Linux x64 | `ubuntu-24.04` | `.AppImage`, `.tar.gz` |
+| Linux ARM64 | `ubuntu-24.04-arm` | `.AppImage`, `.tar.gz` |
+
+After `npm ci` and the [native compiler prerequisites](../resources/ffmpeg/README.md):
+
+```sh
+npm run build:ffmpeg
+npm run installer:desktop
+npm start
+```
+
+`package:desktop` builds the renderer, main/preload and notices, verifies the native media runtime, and stages only built files and licenses. `installer:desktop` additionally creates the native installers in `release/installer/`. The unpacked application is in `release/AlgorithAct-<platform>-<arch>/`; on macOS the executable is inside `AlgorithAct.app/Contents/MacOS/`. Source maps, development dependencies and user projects are excluded. Native tools remain outside `app.asar`.
+
+Source-built media tools have no third-party shared runtime dependencies; Linux still requires its system C/C++ libraries. Linux packages target glibc 2.39+; macOS packages target macOS 12+. Windows ARM64 and 32-bit packages are not part of 0.1.0.
+
+## GitHub publication
+
+1. Open a PR against `main`. Existing CI and all five desktop release builds must pass. The desktop workflow checks native audio/video, packaged export with no PATH/overrides, window controls, recovery and save/close behavior before building installers.
+2. Merge the PR, then tag its reviewed main-branch commit as `v<package.json version>` and push the tag.
+3. The tag workflow rebuilds all five targets. Publication requires every target, correct tag/version, a main-branch commit, the expected nine app downloads and the matching media source archive.
+4. The publisher creates `SHA256SUMS.txt`, uploads to a draft release, then publishes it as an alpha prerelease only after all uploads succeed. A failed build leaves no published partial release.
+
+The workflow can also be dispatched without a tag to validate packages without publication. Publisher certificates and notarization are not configured; Windows/Linux packages are unsigned and macOS apps use ad-hoc signing. Automatic updates are not implemented. See [0.1.0 release notes](releases/0.1.0.md).
+
+The remaining instructions document the optional legacy Windows developer runtime. Published packages use the source-built runtime above.
 
 ## Reproducible source setup
 
@@ -41,11 +74,11 @@ Signing is not configured by this repository. Local installers are unsigned unle
 ## Maintainer release checklist
 
 - Select the release scope, review the [roadmap](ROADMAP.md), update version/lockfile/changelog and describe remaining limitations.
-- Run core checks and [full Windows/native/packaged tests](TESTING.md) from a clean checkout. Record the commit, Node/npm, Electron, Chrome, OS and test results.
+- Run core checks and [native/packaged tests](TESTING.md) on every release platform from a clean checkout. Record the commit, Node/npm, Electron, Chrome, OS and test results.
 - Run `npm audit`, review production and development findings, and update vulnerable dependencies with regression checks.
 - Review new source/assets for secrets, personal files and third-party provenance. Confirm MIT and all upstream license/notice files are present in the packaged output.
-- Preserve exact corresponding sources and build scripts for the bundled FFmpeg and its dependencies, including any notices/source offers required by their licenses. Arrange durable release source hosting/materials before distributing binaries; upstream links alone are not the release source package.
-- Confirm FFmpeg/FFprobe work on a clean Windows machine without developer PATH or environment variables. Exercise save/open, recovery, PNG, audio MP4/WebM, cancel, install and uninstall.
+- Preserve exact corresponding sources and build scripts for bundled FFmpeg and its dependencies. The source-build workflow produces the matching source archive; confirm it is attached and checksummed with the installers.
+- Confirm FFmpeg/FFprobe work without developer PATH or environment variables on every target. Exercise save/open, recovery, PNG, audio MP4/WebM, cancellation and installation.
 - Configure signing when available and verify signatures. If publishing an unsigned alpha, describe that fact accurately without bypass instructions.
 - Create checksums for final artifacts, attach validation and matching source materials, and review the release notes before publishing a GitHub Release. Do not upload build caches or private sample projects.
 

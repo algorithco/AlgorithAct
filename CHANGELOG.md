@@ -1,6 +1,6 @@
 # Changelog
 
-Version 0.1.0 is the initial alpha source snapshot. This file does not announce a published installer.
+Version 0.1.0 is the first desktop alpha for Windows, macOS and Linux.
 
 ## Unreleased
 
@@ -20,7 +20,9 @@ Version 0.1.0 is the initial alpha source snapshot. This file does not announce 
 - Audio waveforms, trim/gain/mute/fades, preview synchronization and offline mixing.
 - `.anim` project files, integrity checks, recovery and desktop backups.
 - PNG and MP4/WebM export with progress/cancel and FFprobe validation.
-- Windows x64 packaging, bundled media tools, branding and an NSIS build script.
+- Windows x64 NSIS installer; macOS Intel/Apple Silicon DMG/ZIP; Linux x64/ARM64 AppImage/tar packages.
+- Native media tools built from checksum-pinned FFmpeg, OpenH264, libvpx and Opus sources, with matching source archives and licenses.
+- Five-platform native audio/video and packaged export checks, release completeness validation and SHA-256 checksums.
 - Unit/property, browser, native and packaged tests, golden frames and benchmark records.
 
-AI Build remains a placeholder. Cross-platform packages, project fonts, scene-settings UX and remaining performance/recovery gates are on the [roadmap](docs/ROADMAP.md).
+AI Build remains a placeholder. Windows ARM64, publisher signing, project fonts, scene-settings UX and remaining performance/recovery gates are on the [roadmap](docs/ROADMAP.md).

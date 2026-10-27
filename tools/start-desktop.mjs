@@ -4,10 +4,11 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
-if(process.platform!=='win32')throw new Error('Use npm run dev:desktop on this platform.');
-const executable=join(root,'release',`AlgorithAct-win32-${process.arch}`,'AlgorithAct.exe');
+if(!['win32','darwin','linux'].includes(process.platform))throw new Error('Unsupported desktop platform.');
+const application=join(root,'release',`AlgorithAct-${process.platform}-${process.arch}`);
+const executable=process.platform==='darwin'?join(application,'AlgorithAct.app','Contents','MacOS','AlgorithAct'):join(application,process.platform==='win32'?'AlgorithAct.exe':'AlgorithAct');
 try { await access(executable); }
-catch { throw new Error('AlgorithAct.exe is missing. Run npm run package:win first.'); }
+catch { throw new Error('Packaged app is missing. Run npm run package:desktop first.'); }
 const env={...process.env};
 delete env.ELECTRON_RUN_AS_NODE;
 delete env.ANIM_DEV_URL;

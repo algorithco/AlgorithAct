@@ -9,6 +9,21 @@ module.exports = {
     target: [{ target: 'nsis', arch: ['x64'] }],
     icon: 'public/brand/algorithact.ico',
   },
+  mac: {
+    target: ['dmg', 'zip'],
+    category: 'public.app-category.graphics-design',
+    icon: 'public/brand/algorithact.icns',
+    identity: '-',
+    hardenedRuntime: false,
+    artifactName: 'AlgorithAct-${version}-macOS-${arch}.${ext}',
+  },
+  linux: {
+    target: ['AppImage', 'tar.gz'],
+    category: 'Graphics',
+    icon: 'public/brand/algorithact-desktop.png',
+    artifactName: 'AlgorithAct-${version}-Linux-${arch}.${ext}',
+    desktop: { entry: { StartupWMClass: 'AlgorithAct' } },
+  },
   nsis: {
     oneClick: false,
     perMachine: false,

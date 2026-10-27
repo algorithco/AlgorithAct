@@ -162,7 +162,7 @@ test('confirmed discard still exits when recovery storage fails', async () => {
 });
 
 test('window controls work over export dialogs and closing stops the encoder safely', async () => {
-  test.skip(!existsSync('resources/ffmpeg/win32-x64/ffmpeg.exe') && !process.env.ANIM_FFMPEG_PATH, 'Prepare FFmpeg before testing native video export.');
+  test.skip(!existsSync(`resources/ffmpeg/${process.platform}-${process.arch}/ffmpeg${process.platform==='win32'?'.exe':''}`) && !process.env.ANIM_FFMPEG_PATH, 'Prepare FFmpeg before testing native video export.');
   test.setTimeout(60000);
   const { application, page, profile, child } = await launchEditor();
   try {

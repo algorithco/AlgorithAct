@@ -7,6 +7,12 @@ playwright-report/
 .qa/
 resources/ffmpeg/*/*.exe
 resources/ffmpeg/*/*.dll
+resources/ffmpeg/*/ffmpeg
+resources/ffmpeg/*/ffprobe
+resources/ffmpeg/*/BUILD-MANIFEST.json
+resources/ffmpeg/*/LICENSES/
+resources/ffmpeg/*/SOURCE-BUILD.txt
+public/brand/algorithact.icns
 *.log
 *.tmp
 *.anim

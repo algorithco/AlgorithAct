@@ -48,7 +48,8 @@ for(const preset of ['mp4','webm'] as const)test(`packaged ${preset} export work
     await page.getByRole('button',{name:'Eksport qilish',exact:true}).click();
     await expect(page.getByRole('dialog',{name:'Eksport sozlamalari'})).toBeHidden({timeout:60000});
     expect((await stat(output)).size).toBeGreaterThan(1000);
-    const probe=join(dirname(executable!),'resources','ffmpeg','win32-x64','ffprobe.exe');
+    const resources=process.platform==='darwin'?resolve(dirname(executable!),'../Resources'):join(dirname(executable!),'resources');
+    const probe=join(resources,'ffmpeg',`${process.platform}-${process.arch}`,process.platform==='win32'?'ffprobe.exe':'ffprobe');
     const data=JSON.parse(execFileSync(probe,['-v','error','-count_frames','-show_entries','stream=codec_type,width,height,nb_read_frames,sample_rate,channels:format=duration','-of','json',output],{encoding:'utf8',windowsHide:true}));
     const video=data.streams.find((stream:{codec_type:string})=>stream.codec_type==='video'),audio=data.streams.find((stream:{codec_type:string})=>stream.codec_type==='audio');
     expect(video.nb_read_frames).toBe('30');expect(video.width).toBe(480);expect(video.height).toBe(270);

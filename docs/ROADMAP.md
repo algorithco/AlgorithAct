@@ -9,7 +9,7 @@ This is a description of current scope and priorities, not a schedule or release
 - Image/audio import, waveform/trim/gain/fades and offline audio export.
 - `.anim` files, integrity checks, recovery and desktop backups.
 - PNG, native audio MP4/WebM, export cancellation and output validation.
-- Windows x64 application and installer build tooling with bundled media tools.
+- Windows x64, macOS Intel/Apple Silicon and Linux x64/ARM64 release builds with bundled media tools.
 
 ## Next validation and usability work
 
@@ -20,7 +20,7 @@ This is a description of current scope and priorities, not a schedule or release
 | Performance | Ten-character/key-heavy preview, memory/stress/soak, portrait and software GPU profiles |
 | Reliability | Recovery/backup failure injection, crash diagnostics and long-run checks |
 | Distribution | Clean-machine installer QA, signing, complete FFmpeg corresponding-source materials and durable runtime availability |
-| Platforms | macOS/Linux packaging and audio/video QA; Windows ARM64 runtime validation |
+| Platforms | Windows ARM64 runtime validation; publisher signing/notarization; broader Linux distribution testing |
 | Accessibility/localization | Broader keyboard/screen-reader QA and additional interface languages |
 
 ## Later possibilities

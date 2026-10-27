@@ -26,4 +26,8 @@ describe('FFmpeg binary selection',()=>{
   it('falls back to PATH only when no bundled or explicit binaries are present',()=>{
     expect(resolveFfmpegBinaries({...options,exists:()=>false})).toEqual({ffmpeg:'ffmpeg',ffprobe:'ffprobe'});
   });
+  for(const platform of ['darwin','linux'] as const)for(const arch of ['x64','arm64'])it(`finds packaged ${platform}-${arch} tools without a Windows extension`,()=>{
+    const folder=join(resources,'ffmpeg',`${platform}-${arch}`),paths={ffmpeg:join(folder,'ffmpeg'),ffprobe:join(folder,'ffprobe')};
+    expect(resolveFfmpegBinaries({resourcesPath:resources,platform,arch,env:{},exists:path=>Object.values(paths).includes(path)})).toEqual(paths);
+  });
 });

@@ -21,7 +21,8 @@ module.exports = {
     target: ['AppImage', 'tar.gz'],
     category: 'Graphics',
     icon: 'public/brand/algorithact-desktop.png',
-    artifactName: 'AlgorithAct-${version}-Linux-${arch}.${ext}',
+    // AppImage expands the arch macro to x86_64; native builds use x64 consistently.
+    artifactName: 'AlgorithAct-${version}-Linux-' + process.arch + '.${ext}',
     desktop: { entry: { StartupWMClass: 'AlgorithAct' } },
   },
   nsis: {

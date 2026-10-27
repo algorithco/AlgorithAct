@@ -1,0 +1,559 @@
+[
+  {
+    "id": "01K8F0Z0000000000000000010",
+    "name": "Tinch turish",
+    "profile": "humanoid",
+    "space": "2d",
+    "durationMs": 2400,
+    "loop": true,
+    "tags": [
+      "idle"
+    ],
+    "tracks": [
+      {
+        "id": "idle-torso",
+        "path": "pose.torso",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": -0.018,
+            "ease": "inOut"
+          },
+          {
+            "t": 1200,
+            "v": 0.018,
+            "ease": "inOut"
+          },
+          {
+            "t": 2400,
+            "v": -0.018,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "idle-head",
+        "path": "pose.head",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0.04,
+            "ease": "inOut"
+          },
+          {
+            "t": 1200,
+            "v": -0.025,
+            "ease": "inOut"
+          },
+          {
+            "t": 2400,
+            "v": 0.04,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "idle-arm",
+        "path": "pose.upperArmR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 1200,
+            "v": 0.05,
+            "ease": "inOut"
+          },
+          {
+            "t": 2400,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "01K8F0Z0000000000000000011",
+    "name": "Yurish",
+    "profile": "humanoid",
+    "space": "2d",
+    "durationMs": 1000,
+    "loop": true,
+    "tags": [
+      "walk"
+    ],
+    "tracks": [
+      {
+        "id": "walk-leg-l",
+        "path": "pose.thighL",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": -0.48,
+            "ease": "inOut"
+          },
+          {
+            "t": 500,
+            "v": 0.48,
+            "ease": "inOut"
+          },
+          {
+            "t": 1000,
+            "v": -0.48,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "walk-leg-r",
+        "path": "pose.thighR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0.48,
+            "ease": "inOut"
+          },
+          {
+            "t": 500,
+            "v": -0.48,
+            "ease": "inOut"
+          },
+          {
+            "t": 1000,
+            "v": 0.48,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "walk-knee-l",
+        "path": "pose.shinL",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 250,
+            "v": -0.65,
+            "ease": "inOut"
+          },
+          {
+            "t": 500,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 1000,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "walk-knee-r",
+        "path": "pose.shinR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 500,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 750,
+            "v": -0.65,
+            "ease": "inOut"
+          },
+          {
+            "t": 1000,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "walk-arm-l",
+        "path": "pose.upperArmL",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0.45,
+            "ease": "inOut"
+          },
+          {
+            "t": 500,
+            "v": -0.45,
+            "ease": "inOut"
+          },
+          {
+            "t": 1000,
+            "v": 0.45,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "walk-arm-r",
+        "path": "pose.upperArmR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": -0.45,
+            "ease": "inOut"
+          },
+          {
+            "t": 500,
+            "v": 0.45,
+            "ease": "inOut"
+          },
+          {
+            "t": 1000,
+            "v": -0.45,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "walk-body",
+        "path": "pose.torso",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": -0.02,
+            "ease": "inOut"
+          },
+          {
+            "t": 500,
+            "v": 0.02,
+            "ease": "inOut"
+          },
+          {
+            "t": 1000,
+            "v": -0.02,
+            "ease": "inOut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "01K8F0Z0000000000000000012",
+    "name": "Qo‘l silkitish",
+    "profile": "humanoid",
+    "space": "2d",
+    "durationMs": 2400,
+    "loop": true,
+    "tags": [
+      "wave"
+    ],
+    "tracks": [
+      {
+        "id": "wave-arm",
+        "path": "pose.upperArmR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 450,
+            "v": -1.75,
+            "ease": "inOut"
+          },
+          {
+            "t": 1900,
+            "v": -1.75,
+            "ease": "inOut"
+          },
+          {
+            "t": 2400,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "wave-elbow",
+        "path": "pose.forearmR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 500,
+            "v": -0.75,
+            "ease": "inOut"
+          },
+          {
+            "t": 750,
+            "v": -1.35,
+            "ease": "inOut"
+          },
+          {
+            "t": 1000,
+            "v": -0.6,
+            "ease": "inOut"
+          },
+          {
+            "t": 1250,
+            "v": -1.35,
+            "ease": "inOut"
+          },
+          {
+            "t": 1500,
+            "v": -0.6,
+            "ease": "inOut"
+          },
+          {
+            "t": 1850,
+            "v": -1.05,
+            "ease": "inOut"
+          },
+          {
+            "t": 2400,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "wave-head",
+        "path": "pose.head",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 900,
+            "v": -0.1,
+            "ease": "inOut"
+          },
+          {
+            "t": 1700,
+            "v": 0.06,
+            "ease": "inOut"
+          },
+          {
+            "t": 2400,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "01K8F0Z0000000000000000013",
+    "name": "Qo‘l ko‘tarish",
+    "profile": "humanoid",
+    "space": "2d",
+    "durationMs": 1800,
+    "loop": false,
+    "tags": [
+      "raise"
+    ],
+    "tracks": [
+      {
+        "id": "raise-arm",
+        "path": "pose.upperArmR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 800,
+            "v": -2.55,
+            "ease": "inOut"
+          },
+          {
+            "t": 1800,
+            "v": -2.55,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "raise-elbow",
+        "path": "pose.forearmR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 800,
+            "v": -0.15,
+            "ease": "inOut"
+          },
+          {
+            "t": 1800,
+            "v": -0.15,
+            "ease": "inOut"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "01K8F0Z0000000000000000014",
+    "name": "Ta’zim",
+    "profile": "humanoid",
+    "space": "2d",
+    "durationMs": 2200,
+    "loop": false,
+    "tags": [
+      "bend"
+    ],
+    "tracks": [
+      {
+        "id": "bend-body",
+        "path": "pose.torso",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 900,
+            "v": 0.38,
+            "ease": "inOut"
+          },
+          {
+            "t": 1400,
+            "v": 0.38,
+            "ease": "inOut"
+          },
+          {
+            "t": 2200,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "bend-head",
+        "path": "pose.head",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 900,
+            "v": 0.4,
+            "ease": "inOut"
+          },
+          {
+            "t": 1400,
+            "v": 0.4,
+            "ease": "inOut"
+          },
+          {
+            "t": 2200,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "bend-l",
+        "path": "pose.upperArmL",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 900,
+            "v": -0.4,
+            "ease": "inOut"
+          },
+          {
+            "t": 2200,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      },
+      {
+        "id": "bend-r",
+        "path": "pose.upperArmR",
+        "type": "number",
+        "blend": "replace",
+        "keys": [
+          {
+            "t": 0,
+            "v": 0,
+            "ease": "inOut"
+          },
+          {
+            "t": 900,
+            "v": -0.35,
+            "ease": "inOut"
+          },
+          {
+            "t": 2200,
+            "v": 0,
+            "ease": "inOut"
+          }
+        ]
+      }
+    ]
+  }
+]

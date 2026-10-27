@@ -1,0 +1,1541 @@
+{
+  "formatVersion": 1,
+  "id": "fixture-1",
+  "meta": {
+    "name": "Birinchi harakat",
+    "createdAt": "2026-10-25T00:00:00.000Z",
+    "modifiedAt": "2026-10-25T00:00:00.000Z",
+    "writtenBy": "algorithco/0.1.0"
+  },
+  "settings": {
+    "fps": 30,
+    "frame": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "assets": {},
+  "library": {
+    "rigs": {
+      "01K8F0Z0000000000000000001": {
+        "id": "01K8F0Z0000000000000000001",
+        "name": "Sodda humanoid",
+        "profile": "humanoid",
+        "space": "2d",
+        "bones": [
+          {
+            "key": "torso",
+            "parent": null,
+            "rest": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0
+            },
+            "length": 125
+          },
+          {
+            "key": "head",
+            "parent": "torso",
+            "rest": {
+              "x": 0,
+              "y": -58,
+              "rotation": 0
+            },
+            "length": 0,
+            "limits": [
+              -0.7,
+              0.7
+            ]
+          },
+          {
+            "key": "upperArmL",
+            "parent": "torso",
+            "rest": {
+              "x": -26,
+              "y": 8,
+              "rotation": 0.4
+            },
+            "length": 62
+          },
+          {
+            "key": "forearmL",
+            "parent": "upperArmL",
+            "rest": {
+              "x": 0,
+              "y": 62,
+              "rotation": 0.08
+            },
+            "length": 66
+          },
+          {
+            "key": "upperArmR",
+            "parent": "torso",
+            "rest": {
+              "x": 26,
+              "y": 8,
+              "rotation": -0.4
+            },
+            "length": 62
+          },
+          {
+            "key": "forearmR",
+            "parent": "upperArmR",
+            "rest": {
+              "x": 0,
+              "y": 62,
+              "rotation": -0.08
+            },
+            "length": 66
+          },
+          {
+            "key": "thighL",
+            "parent": "torso",
+            "rest": {
+              "x": -12,
+              "y": 125,
+              "rotation": 0.19
+            },
+            "length": 82
+          },
+          {
+            "key": "shinL",
+            "parent": "thighL",
+            "rest": {
+              "x": 0,
+              "y": 82,
+              "rotation": 0.04
+            },
+            "length": 88
+          },
+          {
+            "key": "thighR",
+            "parent": "torso",
+            "rest": {
+              "x": 12,
+              "y": 125,
+              "rotation": -0.19
+            },
+            "length": 82
+          },
+          {
+            "key": "shinR",
+            "parent": "thighR",
+            "rest": {
+              "x": 0,
+              "y": 82,
+              "rotation": -0.04
+            },
+            "length": 88
+          }
+        ]
+      },
+      "01K8F0Z0000000000000000006": {
+        "id": "01K8F0Z0000000000000000006",
+        "name": "Novcha humanoid",
+        "profile": "humanoid",
+        "space": "2d",
+        "bones": [
+          {
+            "key": "torso",
+            "parent": null,
+            "rest": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0
+            },
+            "length": 112
+          },
+          {
+            "key": "head",
+            "parent": "torso",
+            "rest": {
+              "x": 0,
+              "y": -52,
+              "rotation": 0
+            },
+            "length": 0,
+            "limits": [
+              -0.7,
+              0.7
+            ]
+          },
+          {
+            "key": "upperArmL",
+            "parent": "torso",
+            "rest": {
+              "x": -22,
+              "y": 8,
+              "rotation": 0.4
+            },
+            "length": 72
+          },
+          {
+            "key": "forearmL",
+            "parent": "upperArmL",
+            "rest": {
+              "x": 0,
+              "y": 72,
+              "rotation": 0.08
+            },
+            "length": 80
+          },
+          {
+            "key": "upperArmR",
+            "parent": "torso",
+            "rest": {
+              "x": 22,
+              "y": 8,
+              "rotation": -0.4
+            },
+            "length": 72
+          },
+          {
+            "key": "forearmR",
+            "parent": "upperArmR",
+            "rest": {
+              "x": 0,
+              "y": 72,
+              "rotation": -0.08
+            },
+            "length": 80
+          },
+          {
+            "key": "thighL",
+            "parent": "torso",
+            "rest": {
+              "x": -10,
+              "y": 112,
+              "rotation": 0.19
+            },
+            "length": 108
+          },
+          {
+            "key": "shinL",
+            "parent": "thighL",
+            "rest": {
+              "x": 0,
+              "y": 108,
+              "rotation": 0.04
+            },
+            "length": 116
+          },
+          {
+            "key": "thighR",
+            "parent": "torso",
+            "rest": {
+              "x": 10,
+              "y": 112,
+              "rotation": -0.19
+            },
+            "length": 108
+          },
+          {
+            "key": "shinR",
+            "parent": "thighR",
+            "rest": {
+              "x": 0,
+              "y": 108,
+              "rotation": -0.04
+            },
+            "length": 116
+          }
+        ]
+      }
+    },
+    "skins": {
+      "01K8F0Z0000000000000000002": {
+        "id": "01K8F0Z0000000000000000002",
+        "name": "Original · Qora",
+        "rigProfile": "humanoid",
+        "palette": {
+          "body": "#242A25",
+          "eyes": "#FFFFFF"
+        },
+        "parts": [
+          {
+            "bone": "thighL",
+            "drawOrder": 0,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 82,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "shinL",
+            "drawOrder": 1,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 88,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "upperArmL",
+            "drawOrder": 2,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 62,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "forearmL",
+            "drawOrder": 3,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 66,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "thighR",
+            "drawOrder": 4,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 82,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "shinR",
+            "drawOrder": 5,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 88,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "upperArmR",
+            "drawOrder": 6,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 62,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "forearmR",
+            "drawOrder": 7,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 66,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "torso",
+            "drawOrder": 10,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": -22,
+                  "x2": 0,
+                  "y2": 5,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 11,
+                    "cap": "round"
+                  }
+                },
+                {
+                  "t": "path",
+                  "d": "M -26 0 L 26 0 L 19 126 L -19 126 Z",
+                  "fill": "$body",
+                  "stroke": {
+                    "color": "$body",
+                    "width": 8
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "head",
+            "drawOrder": 11,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "ellipse",
+                  "x": 0,
+                  "y": 0,
+                  "rx": 37,
+                  "ry": 37,
+                  "fill": "$body"
+                },
+                {
+                  "t": "ellipse",
+                  "x": -12,
+                  "y": -2,
+                  "rx": 3.5,
+                  "ry": 6,
+                  "fill": "$eyes"
+                },
+                {
+                  "t": "ellipse",
+                  "x": 12,
+                  "y": -2,
+                  "rx": 3.5,
+                  "ry": 6,
+                  "fill": "$eyes"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "01K8F0Z0000000000000000004": {
+        "id": "01K8F0Z0000000000000000004",
+        "name": "Novcha · Yashil",
+        "rigProfile": "humanoid",
+        "palette": {
+          "body": "#367568",
+          "eyes": "#FFFFFF"
+        },
+        "parts": [
+          {
+            "bone": "thighL",
+            "drawOrder": 0,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 108,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "shinL",
+            "drawOrder": 1,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 116,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "upperArmL",
+            "drawOrder": 2,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 72,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "forearmL",
+            "drawOrder": 3,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 80,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "thighR",
+            "drawOrder": 4,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 108,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "shinR",
+            "drawOrder": 5,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 116,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "upperArmR",
+            "drawOrder": 6,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 72,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "forearmR",
+            "drawOrder": 7,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": 0,
+                  "x2": 0,
+                  "y2": 80,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "torso",
+            "drawOrder": 10,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "line",
+                  "x1": 0,
+                  "y1": -22,
+                  "x2": 0,
+                  "y2": 5,
+                  "stroke": {
+                    "color": "$body",
+                    "width": 9,
+                    "cap": "round"
+                  }
+                },
+                {
+                  "t": "path",
+                  "d": "M -22 0 L 22 0 L 16 113 L -16 113 Z",
+                  "fill": "$body",
+                  "stroke": {
+                    "color": "$body",
+                    "width": 7
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "bone": "head",
+            "drawOrder": 11,
+            "pivot": {
+              "x": 0,
+              "y": 0
+            },
+            "art": {
+              "kind": "vector",
+              "shapes": [
+                {
+                  "t": "ellipse",
+                  "x": 0,
+                  "y": 0,
+                  "rx": 31,
+                  "ry": 31,
+                  "fill": "$body"
+                },
+                {
+                  "t": "ellipse",
+                  "x": -10,
+                  "y": -2,
+                  "rx": 3,
+                  "ry": 5,
+                  "fill": "$eyes"
+                },
+                {
+                  "t": "ellipse",
+                  "x": 10,
+                  "y": -2,
+                  "rx": 3,
+                  "ry": 5,
+                  "fill": "$eyes"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "characters": {
+      "01K8F0Z0000000000000000003": {
+        "id": "01K8F0Z0000000000000000003",
+        "name": "Original",
+        "rigId": "01K8F0Z0000000000000000001",
+        "skinId": "01K8F0Z0000000000000000002"
+      },
+      "01K8F0Z0000000000000000005": {
+        "id": "01K8F0Z0000000000000000005",
+        "name": "Novcha",
+        "rigId": "01K8F0Z0000000000000000006",
+        "skinId": "01K8F0Z0000000000000000004"
+      }
+    },
+    "motions": {
+      "01K8F0Z0000000000000000010": {
+        "id": "01K8F0Z0000000000000000010",
+        "name": "Tinch turish",
+        "profile": "humanoid",
+        "space": "2d",
+        "durationMs": 2400,
+        "loop": true,
+        "tracks": [
+          {
+            "id": "idle-torso",
+            "path": "pose.torso",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": -0.018,
+                "ease": "inOut"
+              },
+              {
+                "t": 1200,
+                "v": 0.018,
+                "ease": "inOut"
+              },
+              {
+                "t": 2400,
+                "v": -0.018,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "idle-head",
+            "path": "pose.head",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.04,
+                "ease": "inOut"
+              },
+              {
+                "t": 1200,
+                "v": -0.025,
+                "ease": "inOut"
+              },
+              {
+                "t": 2400,
+                "v": 0.04,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "idle-arm",
+            "path": "pose.upperArmR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 1200,
+                "v": 0.05,
+                "ease": "inOut"
+              },
+              {
+                "t": 2400,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "idle"
+        ]
+      },
+      "01K8F0Z0000000000000000011": {
+        "id": "01K8F0Z0000000000000000011",
+        "name": "Yurish",
+        "profile": "humanoid",
+        "space": "2d",
+        "durationMs": 1000,
+        "loop": true,
+        "tracks": [
+          {
+            "id": "walk-leg-l",
+            "path": "pose.thighL",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": -0.48,
+                "ease": "inOut"
+              },
+              {
+                "t": 500,
+                "v": 0.48,
+                "ease": "inOut"
+              },
+              {
+                "t": 1000,
+                "v": -0.48,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "walk-leg-r",
+            "path": "pose.thighR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.48,
+                "ease": "inOut"
+              },
+              {
+                "t": 500,
+                "v": -0.48,
+                "ease": "inOut"
+              },
+              {
+                "t": 1000,
+                "v": 0.48,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "walk-knee-l",
+            "path": "pose.shinL",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 250,
+                "v": -0.65,
+                "ease": "inOut"
+              },
+              {
+                "t": 500,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 1000,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "walk-knee-r",
+            "path": "pose.shinR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 500,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 750,
+                "v": -0.65,
+                "ease": "inOut"
+              },
+              {
+                "t": 1000,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "walk-arm-l",
+            "path": "pose.upperArmL",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0.45,
+                "ease": "inOut"
+              },
+              {
+                "t": 500,
+                "v": -0.45,
+                "ease": "inOut"
+              },
+              {
+                "t": 1000,
+                "v": 0.45,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "walk-arm-r",
+            "path": "pose.upperArmR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": -0.45,
+                "ease": "inOut"
+              },
+              {
+                "t": 500,
+                "v": 0.45,
+                "ease": "inOut"
+              },
+              {
+                "t": 1000,
+                "v": -0.45,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "walk-body",
+            "path": "pose.torso",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": -0.02,
+                "ease": "inOut"
+              },
+              {
+                "t": 500,
+                "v": 0.02,
+                "ease": "inOut"
+              },
+              {
+                "t": 1000,
+                "v": -0.02,
+                "ease": "inOut"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "walk"
+        ]
+      },
+      "01K8F0Z0000000000000000012": {
+        "id": "01K8F0Z0000000000000000012",
+        "name": "Qo‘l silkitish",
+        "profile": "humanoid",
+        "space": "2d",
+        "durationMs": 2400,
+        "loop": true,
+        "tracks": [
+          {
+            "id": "wave-arm",
+            "path": "pose.upperArmR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 450,
+                "v": -1.75,
+                "ease": "inOut"
+              },
+              {
+                "t": 1900,
+                "v": -1.75,
+                "ease": "inOut"
+              },
+              {
+                "t": 2400,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "wave-elbow",
+            "path": "pose.forearmR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 500,
+                "v": -0.75,
+                "ease": "inOut"
+              },
+              {
+                "t": 750,
+                "v": -1.35,
+                "ease": "inOut"
+              },
+              {
+                "t": 1000,
+                "v": -0.6,
+                "ease": "inOut"
+              },
+              {
+                "t": 1250,
+                "v": -1.35,
+                "ease": "inOut"
+              },
+              {
+                "t": 1500,
+                "v": -0.6,
+                "ease": "inOut"
+              },
+              {
+                "t": 1850,
+                "v": -1.05,
+                "ease": "inOut"
+              },
+              {
+                "t": 2400,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "wave-head",
+            "path": "pose.head",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 900,
+                "v": -0.1,
+                "ease": "inOut"
+              },
+              {
+                "t": 1700,
+                "v": 0.06,
+                "ease": "inOut"
+              },
+              {
+                "t": 2400,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "wave"
+        ]
+      },
+      "01K8F0Z0000000000000000013": {
+        "id": "01K8F0Z0000000000000000013",
+        "name": "Qo‘l ko‘tarish",
+        "profile": "humanoid",
+        "space": "2d",
+        "durationMs": 1800,
+        "loop": false,
+        "tracks": [
+          {
+            "id": "raise-arm",
+            "path": "pose.upperArmR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 800,
+                "v": -2.55,
+                "ease": "inOut"
+              },
+              {
+                "t": 1800,
+                "v": -2.55,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "raise-elbow",
+            "path": "pose.forearmR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 800,
+                "v": -0.15,
+                "ease": "inOut"
+              },
+              {
+                "t": 1800,
+                "v": -0.15,
+                "ease": "inOut"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "raise"
+        ]
+      },
+      "01K8F0Z0000000000000000014": {
+        "id": "01K8F0Z0000000000000000014",
+        "name": "Ta’zim",
+        "profile": "humanoid",
+        "space": "2d",
+        "durationMs": 2200,
+        "loop": false,
+        "tracks": [
+          {
+            "id": "bend-body",
+            "path": "pose.torso",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 900,
+                "v": 0.38,
+                "ease": "inOut"
+              },
+              {
+                "t": 1400,
+                "v": 0.38,
+                "ease": "inOut"
+              },
+              {
+                "t": 2200,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "bend-head",
+            "path": "pose.head",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 900,
+                "v": 0.4,
+                "ease": "inOut"
+              },
+              {
+                "t": 1400,
+                "v": 0.4,
+                "ease": "inOut"
+              },
+              {
+                "t": 2200,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "bend-l",
+            "path": "pose.upperArmL",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 900,
+                "v": -0.4,
+                "ease": "inOut"
+              },
+              {
+                "t": 2200,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          },
+          {
+            "id": "bend-r",
+            "path": "pose.upperArmR",
+            "type": "number",
+            "blend": "replace",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "ease": "inOut"
+              },
+              {
+                "t": 900,
+                "v": -0.35,
+                "ease": "inOut"
+              },
+              {
+                "t": 2200,
+                "v": 0,
+                "ease": "inOut"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "bend"
+        ]
+      }
+    }
+  },
+  "scenes": {
+    "fixture-2": {
+      "id": "fixture-2",
+      "name": "Birinchi sahna",
+      "space": "2d",
+      "durationMs": 10000,
+      "background": {
+        "type": "color",
+        "color": "#E9EEE7"
+      },
+      "entities": {
+        "fixture-4": {
+          "id": "fixture-4",
+          "name": "Kamera",
+          "visible": true,
+          "locked": false,
+          "extensions": {},
+          "kind": "camera",
+          "x": 960,
+          "y": 540,
+          "zoom": 1,
+          "rotation": 0
+        },
+        "fixture-5": {
+          "id": "fixture-5",
+          "name": "Kichik sarlavha",
+          "visible": true,
+          "locked": false,
+          "extensions": {},
+          "kind": "text",
+          "text": "TASAVVURDAN HARAKATGA",
+          "size": 24,
+          "color": "#64745D",
+          "transform": {
+            "x": 170,
+            "y": 235,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          "opacity": 1
+        },
+        "fixture-6": {
+          "id": "fixture-6",
+          "name": "Asosiy sarlavha",
+          "visible": true,
+          "locked": false,
+          "extensions": {},
+          "kind": "text",
+          "text": "Kichik g‘oya.\nKatta harakat.",
+          "size": 100,
+          "color": "#27332A",
+          "transform": {
+            "x": 165,
+            "y": 310,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          "opacity": 1
+        },
+        "fixture-7": {
+          "id": "fixture-7",
+          "name": "Izoh",
+          "visible": true,
+          "locked": false,
+          "extensions": {},
+          "kind": "text",
+          "text": "Personajingizga hayot bering.",
+          "size": 31,
+          "color": "#788172",
+          "transform": {
+            "x": 172,
+            "y": 600,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          "opacity": 1
+        },
+        "fixture-8": {
+          "id": "fixture-8",
+          "name": "Pastki yozuv",
+          "visible": true,
+          "locked": false,
+          "extensions": {},
+          "kind": "text",
+          "text": "Birinchi sahna  /  01",
+          "size": 23,
+          "color": "#788172",
+          "transform": {
+            "x": 172,
+            "y": 887,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          },
+          "opacity": 1
+        },
+        "fixture-3": {
+          "id": "fixture-3",
+          "name": "Qahramon",
+          "visible": true,
+          "locked": false,
+          "extensions": {},
+          "kind": "character",
+          "characterId": "01K8F0Z0000000000000000003",
+          "transform": {
+            "x": 1390,
+            "y": 410,
+            "rotation": 0,
+            "scaleX": 1.5,
+            "scaleY": 1.5
+          },
+          "opacity": 1,
+          "pose": {}
+        }
+      },
+      "entityOrder": [
+        "fixture-4",
+        "fixture-5",
+        "fixture-6",
+        "fixture-7",
+        "fixture-8",
+        "fixture-3"
+      ],
+      "cameraId": "fixture-4",
+      "timeline": {
+        "tracks": {},
+        "clips": {
+          "fixture-9": {
+            "id": "fixture-9",
+            "startMs": 0,
+            "durationMs": 4800,
+            "lane": 0,
+            "muted": false,
+            "extensions": {},
+            "kind": "motion",
+            "entityId": "fixture-3",
+            "motionId": "01K8F0Z0000000000000000012",
+            "offsetMs": 0,
+            "speed": 1,
+            "loop": true,
+            "blendInMs": 120,
+            "blendOutMs": 200,
+            "weight": 1
+          }
+        }
+      },
+      "extensions": {}
+    }
+  },
+  "sceneOrder": [
+    "fixture-2"
+  ],
+  "extensions": {}
+}

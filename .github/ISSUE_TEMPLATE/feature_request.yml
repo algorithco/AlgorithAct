@@ -1,0 +1,22 @@
+name: Feature request / Taklif
+description: Propose an improvement with a clear use case.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Explain the workflow and who it helps. English or Uzbek is welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe a focused improvement and alternatives you considered.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Examples or mockups are welcome. Avoid private media and unlicensed assets.

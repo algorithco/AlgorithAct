@@ -1,0 +1,40 @@
+name: Bug report / Xatolik
+description: Report a reproducible problem. English or Uzbek is welcome.
+body:
+  - type: markdown
+    attributes:
+      value: Please use a small synthetic example. Project files embed media; do not attach private audio, secrets or personal files.
+  - type: input
+    id: version
+    attributes:
+      label: App version or commit
+      placeholder: 0.1.0 alpha / commit SHA
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Operating system and runtime
+      description: Include Windows version, packaged/development/browser mode and Node/Chrome versions if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Give exact steps starting from a new project when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include readable errors and sanitized screenshots/logs if useful.
+    validations:
+      required: true

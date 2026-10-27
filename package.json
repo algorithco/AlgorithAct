@@ -1,0 +1,78 @@
+{
+  "name": "algorithact",
+  "productName": "AlgorithAct",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Algorithco",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algorithco/AlgorithAct.git"
+  },
+  "homepage": "https://github.com/algorithco/AlgorithAct#readme",
+  "bugs": {
+    "url": "https://github.com/algorithco/AlgorithAct/issues"
+  },
+  "engines": {
+    "node": "^22.12.0 || >=24.0.0"
+  },
+  "type": "module",
+  "description": "AlgorithAct — offline 2D character animation studio",
+  "main": "dist-electron/main.cjs",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "dev:desktop": "node tools/desktop.mjs --dev",
+    "build:content": "tsx tools/build-content.ts",
+    "build:icons": "node tools/build-icons.mjs",
+    "prepare:ffmpeg": "node tools/prepare-ffmpeg.mjs",
+    "build:notices": "node tools/build-notices.mjs",
+    "check:docs": "node tools/check-docs.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . && depcruise src --config tools/dependency-cruiser.cjs",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "benchmark:export": "tsx tools/benchmark-export.ts",
+    "test:golden:update": "tsx tools/update-golden-frames.ts",
+    "test:history": "node tools/history-check.mjs",
+    "build": "npm run build:icons && npm run build:content && npm run typecheck && vite build && npm run build:notices && node tools/build-electron.mjs",
+    "package:win": "npm run build && node tools/package-windows.mjs",
+    "installer:win": "npm run package:win && electron-builder --config electron-builder.config.cjs --win nsis --x64 --prepackaged release/AlgorithAct-win32-x64 --publish never",
+    "start": "node tools/start-desktop.mjs",
+    "check": "npm run typecheck && npm run lint && npm run check:docs && npm test",
+    "preview": "vite preview --host 127.0.0.1",
+    "test:e2e:browser": "playwright test --config playwright.browser.config.ts",
+    "test:e2e:desktop": "playwright test --config playwright.desktop.config.ts",
+    "test:e2e:golden": "playwright test --project=golden --no-deps"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "immer": "^10.1.1",
+    "lucide-react": "^0.468.0",
+    "pixi.js": "^8.14.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "ulid": "^3.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@eslint/js": "^9.0.0",
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "dependency-cruiser": "^17.0.0",
+    "electron": "^42.11.18",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "fast-check": "^4.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^7.0.0",
+    "vitest": "^4.1.12"
+  }
+}

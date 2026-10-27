@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-27",
+  "package": "release/export-fixed/AlgorithAct-win32-x64/AlgorithAct.exe",
+  "tests": "tests/e2e/packaged-export.spec.ts",
+  "childEnvironment": {
+    "PATH": "removed or empty",
+    "ANIM_FFMPEG_PATH": "removed",
+    "ANIM_FFPROBE_PATH": "removed"
+  },
+  "outputs": [
+    {
+      "format": {
+        "duration": "1.000000"
+      },
+      "bytes": 31926,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 480,
+          "height": 270,
+          "nb_read_frames": "30"
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "nb_read_frames": "47"
+        }
+      ]
+    },
+    {
+      "format": {
+        "duration": "1.008000"
+      },
+      "bytes": 27835,
+      "streams": [
+        {
+          "codec_name": "vp9",
+          "codec_type": "video",
+          "width": 480,
+          "height": 270,
+          "nb_read_frames": "30"
+        },
+        {
+          "codec_name": "opus",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "nb_read_frames": "51"
+        }
+      ]
+    }
+  ],
+  "startupFailurePreservedExistingOutput": true
+}

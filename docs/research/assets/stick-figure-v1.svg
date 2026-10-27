@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="768" viewBox="0 0 768 768" role="img" aria-labelledby="title">
+  <title id="title">Sodda 2D tayoqchali figura</title>
+  <rect width="768" height="768" fill="#FFFFFF" />
+  <g fill="none" stroke="#17191D" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="384" cy="184" r="38" />
+    <line x1="384" y1="222" x2="384" y2="416" />
+    <polyline points="384,270 315,328 280,394" />
+    <polyline points="384,270 453,328 488,394" />
+    <polyline points="384,416 338,516 310,628" />
+    <polyline points="384,416 430,516 458,628" />
+  </g>
+</svg>

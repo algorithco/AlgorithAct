@@ -1,0 +1,58 @@
+{
+  "platform": "win32",
+  "arch": "x64",
+  "version": "ffmpeg version N-128094-g31855b2a70-20261025 Copyright (c) 2000-2026 the FFmpeg developers\r",
+  "archive": "ffmpeg-N-128094-g31855b2a70-win64-lgpl-shared.zip",
+  "archiveUrl": "https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2026-10-25-13-00/ffmpeg-N-128094-g31855b2a70-win64-lgpl-shared.zip",
+  "archiveSha256": "4505cfba7f38187dedbfa0d761e76c9a147630930e8750b62f58e0c4f80b6994",
+  "archiveDirectory": "ffmpeg-N-128094-g31855b2a70-win64-lgpl-shared",
+  "upstream": "https://github.com/BtbN/FFmpeg-Builds",
+  "license": "LGPL-3.0-or-later",
+  "files": [
+    {
+      "name": "avcodec-63.dll",
+      "bytes": 91977728,
+      "sha256": "6bb3fdca1943fc3aeca65ba798e8f8ab1617c0e844e7f27a64301733ab16ebdf"
+    },
+    {
+      "name": "avdevice-63.dll",
+      "bytes": 4948480,
+      "sha256": "4dfa093cdc8e9023a51269a5ba55bf512651487c805a35229abc894e4f05d94f"
+    },
+    {
+      "name": "avfilter-12.dll",
+      "bytes": 31706624,
+      "sha256": "6ab9bb7e4ff97792270dba99b77764bd505febb58a9f831dfddbfea3fc1158ac"
+    },
+    {
+      "name": "avformat-63.dll",
+      "bytes": 25729536,
+      "sha256": "d76579c05a07d42a4ce4177b3d673cc9d601cdc9cf227a8210035e075e591f2c"
+    },
+    {
+      "name": "avutil-61.dll",
+      "bytes": 3042304,
+      "sha256": "9b447566abbde71ec65b26e179acc7bf5c5456f31ccd4aa4b6c4e9f1e7f44206"
+    },
+    {
+      "name": "ffmpeg.exe",
+      "bytes": 561664,
+      "sha256": "b2b35e28083d5e3334521985049a6f70db7dfdf0545f44b0e7322d276442463a"
+    },
+    {
+      "name": "ffprobe.exe",
+      "bytes": 237056,
+      "sha256": "ebfcfb85f09a48351f3f55c62e6a582ec6fc67b285382b9eaa8d89ada39a0188"
+    },
+    {
+      "name": "swresample-7.dll",
+      "bytes": 739840,
+      "sha256": "109f0f4f8cd2f1035d4b709850b3261ba620c46ca255b238ef0ac9fd2e53d792"
+    },
+    {
+      "name": "swscale-10.dll",
+      "bytes": 2398208,
+      "sha256": "6d589165145c34420d801aa76d8e6a32089c53205eeb666ef48f3198ac23039c"
+    }
+  ]
+}

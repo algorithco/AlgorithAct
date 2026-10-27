@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "sequences": 10000,
+  "seed": 20261025,
+  "elapsedSeconds": 31.046,
+  "checks": [
+    "mixed transform/pose/text/audio metadata operations",
+    "reference invariants after each transaction",
+    "undo returns initial project",
+    "redo returns final project"
+  ],
+  "passedTests": 5,
+  "failedTests": 0
+}

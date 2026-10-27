@@ -1,0 +1,132 @@
+.audio-list-heading {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 10px 8px;
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  color: var(--muted);
+}
+
+.project-audio-list { border-top: 1px solid var(--border); margin-top: 10px; }
+.layer-type-icon.audio, .layer-icon.audio { background: var(--audio-dim); color: var(--audio); }
+.audio-row { height: 40px; }
+.audio-row .track-label { background: #1b2928; }
+.audio-row.selected .track-label { background: var(--accent-dim); }
+.audio-row .track-name { color: #c1ddd5; }
+.audio-row .track-label > button:not(.track-name) { color: var(--audio); }
+.audio-row.selected .track-name,
+.audio-row.selected .track-label > button:not(.track-name) { color: var(--accent); }
+.audio-lane { background-color: #172120; }
+.timeline-row.selected .audio-lane { background-color: #27281b; }
+
+.audio-clip {
+  position: absolute;
+  top: 5px;
+  height: 30px;
+  justify-content: initial;
+  overflow: hidden;
+  touch-action: none;
+  border-radius: 5px;
+  background: #2b5148;
+  border: 1px solid #4b8272;
+  color: #edf7f3;
+  font-size: 10px;
+  text-align: left;
+  isolation: isolate;
+}
+
+.audio-clip.selected-clip {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.audio-clip:hover:not(:disabled) { background: #356052; color: #fff; }
+.audio-clip > span {
+  position: relative;
+  z-index: 2;
+  padding: 2px 7px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 3px #0b201c;
+  background: #173b2fb3;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.audio-waveform {
+  position: absolute;
+  inset: 3px 3px;
+  width: calc(100% - 6px);
+  height: 24px;
+  stroke: var(--audio);
+  stroke-width: .7;
+  opacity: .85;
+  pointer-events: none;
+}
+
+.audio-muted .audio-clip { opacity: .4; }
+.audio-fade-in, .audio-fade-out {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #101c1ab3;
+  z-index: 1;
+  pointer-events: none;
+}
+.audio-fade-in { left: 0; clip-path: polygon(0 0,100% 0,0 100%); }
+.audio-fade-out { right: 0; clip-path: polygon(0 0,100% 0,100% 100%); }
+
+.object-avatar.audio { background: var(--audio-dim); border-color: #36554b; color: var(--audio); }
+.audio-filename {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 175px;
+}
+.audio-inspector .selected-object > div > span { color: var(--audio); }
+.audio-inspector .inspector-section-title > span { font-size: 11px; color: var(--muted); }
+.audio-inspector input[type=range] { accent-color: var(--accent); }
+.audio-mute-button {
+  margin-top: 18px;
+  padding: 8px 10px;
+  border: 1px solid #36554b;
+  border-radius: 6px;
+  background: var(--audio-dim);
+  color: #b6dacd;
+  font-size: 11px;
+  gap: 8px;
+  width: 100%;
+}
+.audio-mute-button:hover:not(:disabled) { background: #294238; color: #ecf8f1; }
+.audio-mute-button.muted { background: #342426; border-color: #684045; color: var(--danger); }
+.audio-mute-button.muted:hover:not(:disabled) { background: #432d30; color: #ffc5c5; }
+.audio-field-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 13px; }
+.audio-seconds { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.audio-seconds > span { font-size: 10px; color: var(--muted); }
+.audio-seconds .number-field { flex: initial; width: 100%; }
+.audio-inspector .inspector-note { line-height: 1.8; }
+.delete-audio {
+  padding: 9px 10px;
+  color: var(--danger);
+  border: 1px solid #58363b;
+  border-radius: 6px;
+  font-size: 11px;
+  width: 100%;
+}
+.delete-audio:hover:not(:disabled) { color: #ffc1c1; background: #362326; border-color: #855158; }
+.audio-gain-input { display: flex; align-items: center; gap: 4px; color: var(--muted); font-size: 10px; }
+.audio-gain-input input {
+  width: 40px;
+  text-align: right;
+  padding: 3px 5px;
+  border-color: var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 11px;
+}
+.audio-gain-input > span { font-size: 9px; }

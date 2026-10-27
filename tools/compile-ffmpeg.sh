@@ -57,7 +57,7 @@ cd "$build/ffmpeg"
   --enable-libopenh264 --enable-libvpx --enable-libopus --pkg-config-flags=--static \
   --extra-cflags="-I$prefix/include" --extra-ldflags="$extra_ldflags" --extra-libs="$extra_libs" \
   --enable-protocol=file,pipe --enable-demuxer=rawvideo,wav,mov,matroska,mp3,ogg,aac,flac \
-  --enable-muxer=mp4,webm,wav,f32le --enable-encoder=libopenh264,libvpx_vp9,aac,libopus,pcm_s16le,pcm_f32le \
+  --enable-muxer=mp4,webm,wav,pcm_f32le --enable-encoder=libopenh264,libvpx_vp9,aac,libopus,pcm_s16le,pcm_f32le \
   --enable-decoder=rawvideo,h264,vp9,pcm_s16le,pcm_s24le,pcm_f32le,aac,opus,mp3,flac,vorbis \
   --enable-parser=aac,h264,opus,mpegaudio,vp9 --enable-bsf=h264_mp4toannexb,extract_extradata,aac_adtstoasc \
   --enable-filter=scale,format,aresample,anull,pan,aformat \

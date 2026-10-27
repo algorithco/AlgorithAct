@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { chmod, copyFile, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { chmod, copyFile, mkdir, mkdtemp, readFile, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -10,7 +10,10 @@ if (!['win32-x64', 'darwin-x64', 'darwin-arm64', 'linux-x64', 'linux-arm64'].inc
 const sourceLock = await readFile(join(root, 'resources/ffmpeg/sources.json'));
 const sources = JSON.parse(sourceLock);
 const sourceDirectory = join(root, '.qa/ffmpeg-sources');
-const build = join(root, '.qa/ffmpeg-build', target);
+const buildDirectory = join(root, '.qa/ffmpeg-build');
+await mkdir(buildDirectory, { recursive: true });
+// Never reuse objects from a previous source revision or compiler configuration.
+const build = await mkdtemp(join(buildDirectory, `${target}-`));
 const prefix = join(build, 'install');
 await mkdir(sourceDirectory, { recursive: true });
 await mkdir(build, { recursive: true });

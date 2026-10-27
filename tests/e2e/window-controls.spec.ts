@@ -45,12 +45,7 @@ test('custom controls minimize, maximize, restore and follow native window state
     await expect(page.getByRole('button', { name: 'Oynani tiklash', exact: true })).toBeVisible();
     await application.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].unmaximize());
     await expect(page.getByRole('button', { name: 'Oynani kattalashtirish', exact: true })).toBeVisible();
-    const availableWidth = await application.evaluate(({ screen }) => screen.getPrimaryDisplay().workAreaSize.width);
-    // Hosted desktops can report 1024px while allowing the app's 1500px window.
-    const maximumWidth = Math.max(availableWidth, await page.evaluate(() => window.innerWidth));
-    const widths = [1100, 1280, 1500, 1920].filter(width => width <= maximumWidth);
-    expect(widths.length).toBeGreaterThan(0);
-    for (const width of widths) {
+    for (const width of [1100, 1280, 1500, 1920]) {
       await application.evaluate(({ BrowserWindow }, width) => BrowserWindow.getAllWindows()[0].setContentSize(width, 800), width);
       await expect.poll(() => page.evaluate(() => window.innerWidth)).toBe(width);
       await page.screenshot({ path: `.qa/custom-navigation-${width}.png` });

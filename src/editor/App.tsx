@@ -161,7 +161,7 @@ export function App({services}:{services:EditorServices}){
       }else{
         if(!services.exportVideo)throw new Error('Video eksporti desktop rejimida ishlaydi.');
         const handle=services.exportVideo({project,assets,presetId:exportFormat,sceneId},setExportProgress);exportRef.current=handle;
-        const output=await handle.done;if(output){notify('Video eksport qilindi');setDialog(current=>current==='close'?current:null);}else notify('Eksport bekor qilindi');
+        const output=await handle.done;if(output){notify('Video eksport qilindi');setDialog(null);}else notify('Eksport bekor qilindi');
       }
     }catch(e){setExportError(message(e));}finally{setExporting(false);exportRef.current=null;}
   }

@@ -56,7 +56,9 @@ npm run test:e2e
 
 The `golden` project runs after `workflows` to avoid concurrent GPU contexts. References in `tests/golden-frames/` were recorded on Windows, Chrome 155, SwiftShader and Arial. They compare preview/export RGBA, PNG/raw consistency, seeking and camera changes, with tightly bounded rounding tolerance. They are not portable font-rendering baselines for Linux/macOS.
 
-After an intentional, reviewed visual change, regenerate with `npm run test:golden:update`, inspect every image and include the rationale in the PR. Do not loosen tolerances or update references to hide a regression. Chrome updates can require an environment investigation before a baseline decision.
+The original camera reference also has a hash-bound list of 27 reviewed, single-channel text-edge rounding positions. Frames exceeding the generic budget pass only when every difference is an exact one-level rounding on that list. See [pixel analysis and constraints](qa/golden-pixel-rounding.md). The reference PNGs and all preview/export and PNG/raw equality checks remain unchanged.
+
+After an intentional, reviewed visual change, regenerate with `npm run test:golden:update`, inspect every image and include the rationale in the PR. Do not loosen tolerances or update references to hide a regression. Review the hash-bound mask separately when references change. Chrome updates can require an environment investigation before a baseline decision.
 
 ## Extended checks
 
@@ -83,7 +85,7 @@ npm run test:e2e:desktop -- --workers=1
 npm run test:e2e:golden -- --workers=1
 ```
 
-Desktop tests use only Electron and do not start Vite. Browser workflows and golden frames each own a fresh Vite lifecycle. CI uses these stages because Windows Electron process teardown can interrupt a development server sharing the same test process tree. All existing assertions and pixel thresholds remain in place. Desktop tests still require the environment setup above.
+Desktop tests use only Electron and do not start Vite. Browser workflows and golden frames each own a fresh Vite lifecycle. CI uses these stages because Windows Electron process teardown can interrupt a development server sharing the same test process tree. Desktop tests still require the environment setup above.
 
 ## CI scope
 

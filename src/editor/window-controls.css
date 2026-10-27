@@ -1,0 +1,59 @@
+/* The app header replaces the OS title bar; interactive regions stay clickable. */
+.desktop-app .app-header {
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  padding-right: 0;
+  gap: 20px;
+  -webkit-app-region: drag;
+  app-region: drag;
+  user-select: none;
+}
+.desktop-app .app-header :is(button, input, .workspace-modes, .header-actions, .window-controls) {
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+.desktop-app .project-title > input { user-select: text; }
+.window-controls {
+  position: relative;
+  z-index: 95;
+  display: flex;
+  align-self: stretch;
+  align-items: stretch;
+  padding-left: 8px;
+  margin-left: 4px;
+  border-left: 1px solid #ffffff0d;
+}
+.window-control {
+  width: 46px;
+  min-width: 46px;
+  height: 100%;
+  border-radius: 0;
+  color: #aaa;
+  cursor: default;
+}
+.window-control:hover { background: #ffffff10; color: #fff; }
+.window-control.window-close:hover { background: #c42b35; color: #fff; }
+.window-control:focus-visible { outline-offset: -5px; border-radius: 0; }
+.window-control:active { background: #ffffff1c; }
+.window-control.window-close:active { background: #a9232c; }
+.window-control svg { pointer-events: none; stroke-width: 1.6; }
+.close-window-backdrop { z-index: 90; }
+.close-window-dialog.modal { width: min(560px, calc(100vw - 48px)); }
+.close-window-dialog h2 { max-width: 390px; padding-right: 12px; font-size: 26px; line-height: 1.3; }
+.close-window-dialog p { overflow-wrap: anywhere; }
+.close-dialog-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.close-dialog-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; margin-top: 28px; }
+.close-discard-button { padding: 11px 6px; font-size: 12px; color: #bdbdbd; border-radius: 6px; }
+.close-discard-button:hover:not(:disabled) { background: #ffffff0a; color: #fff; }
+.close-window-dialog .close-export-note { color: #dac78a; font-size: 12px; }
+@media (max-width: 1439px) {
+  .desktop-app .app-header { gap: 14px; }
+  .desktop-app .header-identity { gap: 12px; }
+  .desktop-app .project-heading { padding-left: 12px; max-width: 170px; }
+}
+@media (max-width: 1199px) {
+  .desktop-app .app-header { gap: 12px; padding-left: 16px; }
+  .desktop-app .header-actions .icon-button { width: 36px; min-width: 36px; }
+  .desktop-app .project-heading { max-width: 140px; }
+  .window-controls { padding-left: 0; margin-left: 0; }
+  .window-control { width: 42px; min-width: 42px; }
+}

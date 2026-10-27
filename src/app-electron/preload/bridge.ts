@@ -2,6 +2,15 @@ import { contextBridge, ipcRenderer } from 'electron';
 import type { DesktopBridge } from '../../contracts/desktop';
 
 const bridge:DesktopBridge={
+  windowControls:{
+    getState:()=>ipcRenderer.invoke('window:state'),
+    minimize:()=>ipcRenderer.invoke('window:minimize'),
+    toggleMaximize:()=>ipcRenderer.invoke('window:toggle-maximize'),
+    requestClose:()=>ipcRenderer.invoke('window:request-close'),
+    confirmClose:()=>ipcRenderer.invoke('window:confirm-close'),
+    onStateChange(callback){const listener=(_event:unknown,state:Parameters<typeof callback>[0])=>callback(state);ipcRenderer.on('window:state-changed',listener);return()=>{ipcRenderer.removeListener('window:state-changed',listener);};},
+    onCloseRequested(callback){const listener=()=>callback();ipcRenderer.on('window:close-requested',listener);return()=>{ipcRenderer.removeListener('window:close-requested',listener);};},
+  },
   openProject:()=>ipcRenderer.invoke('project:open'),
   saveProject:(bytes,name)=>ipcRenderer.invoke('project:save',bytes,name),
   writeRecovery:bytes=>ipcRenderer.invoke('recovery:write',bytes),

@@ -19,6 +19,8 @@ app.setName('AlgorithAct');
 if(process.platform==='win32')app.setAppUserModelId('com.algorithact.desktop');
 
 let main:BrowserWindow|undefined;
+let closeApproved=false;
+let windowControlsReady=false;
 // Resolve bundled files from the application, independently of its launch folder.
 const appRoot=app.isPackaged?app.getAppPath():resolve(__dirname,'..');
 const preload=join(appRoot,'dist-electron/preload.cjs');
@@ -39,7 +41,8 @@ async function atomicWrite(path:string,bytes:Uint8Array,backup:boolean){
 async function limitedRead(path:string){if((await stat(path)).size>100_000_000)throw new Error('Fayl 100 MB dan katta.');return new Uint8Array(await readFile(path));}
 function secureWindow(show:boolean){
   const icon=join(appRoot,devUrl?'public/brand':'dist/brand',process.platform==='win32'?'algorithact.ico':'algorithact-desktop.png');
-  const win=new BrowserWindow({width:1500,height:980,minWidth:1100,minHeight:740,show,backgroundColor:'#111214',title:'AlgorithAct',icon,autoHideMenuBar:true,webPreferences:{preload,contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:show}});
+  const win=new BrowserWindow({width:1500,height:980,minWidth:1100,minHeight:740,show,frame:false,backgroundColor:'#111214',title:'AlgorithAct',icon,autoHideMenuBar:true,webPreferences:{preload,contextIsolation:true,nodeIntegration:false,sandbox:true,backgroundThrottling:show}});
+  win.setMenu(null);
   win.webContents.setWindowOpenHandler(()=>({action:'deny'}));win.webContents.on('will-navigate',event=>event.preventDefault());
   win.webContents.session.setPermissionRequestHandler((_contents,_permission,callback)=>callback(false));
   return win;
@@ -54,6 +57,16 @@ async function settleExport(error?:string){
   finally{if(!current.window.isDestroyed())current.window.destroy();}
 }
 function registerIpc(){
+  ipcMain.handle('window:state',event=>{isMain(event);windowControlsReady=true;return {maximized:main!.isMaximized()};});
+  ipcMain.handle('window:minimize',event=>{isMain(event);main!.minimize();});
+  ipcMain.handle('window:toggle-maximize',event=>{isMain(event);if(main!.isMaximized())main!.unmaximize();else main!.maximize();return {maximized:main!.isMaximized()};});
+  ipcMain.handle('window:request-close',event=>{isMain(event);main!.close();});
+  ipcMain.handle('window:confirm-close',async event=>{
+    isMain(event);
+    // Stop the encoder before the last visible window goes away.
+    if(job){job.cancelled=true;job.window.webContents.send('export:cancel');await settleExport();}
+    closeApproved=true;main?.close();
+  });
   ipcMain.handle('project:open',async event=>{isMain(event);const result=await dialog.showOpenDialog(main!,{properties:['openFile'],filters:[{name:'Animatsiya loyihasi',extensions:['anim']}]});return result.canceled?null:limitedRead(result.filePaths[0]);});
   ipcMain.handle('project:save',async(event,raw,name:unknown)=>{isMain(event);const bytes=checkedBytes(raw);if(typeof name!=='string')throw new Error('Noto‘g‘ri nom.');const result=await dialog.showSaveDialog(main!,{defaultPath:`${name.slice(0,100).replace(/[<>:"/\\|?*]/g,'_')}.anim`,filters:[{name:'Animatsiya loyihasi',extensions:['anim']}]});if(result.canceled||!result.filePath)return false;await atomicWrite(result.filePath,bytes,true);return true;});
   ipcMain.handle('recovery:write',async(event,raw)=>{isMain(event);await atomicWrite(recoveryPath(),checkedBytes(raw),false);});
@@ -95,7 +108,13 @@ function registerIpc(){
   ipcMain.on('export:done',(event,error?:string)=>{if(job && event.sender===job.window.webContents)void settleExport(error);});
 }
 void app.whenReady().then(async()=>{
-  registerIpc();main=secureWindow(true);await main.loadURL(appUrl);
+  registerIpc();main=secureWindow(true);
+  main.on('close',event=>{if(windowControlsReady&&!closeApproved){event.preventDefault();main?.webContents.send('window:close-requested');}});
+  main.webContents.on('render-process-gone',()=>{windowControlsReady=false;});
+  main.webContents.on('will-prevent-unload',event=>{if(closeApproved)event.preventDefault();});
+  const sendWindowState=()=>main?.webContents.send('window:state-changed',{maximized:main.isMaximized()});
+  main.on('maximize',sendWindowState);main.on('unmaximize',sendWindowState);
   main.on('closed',()=>{main=undefined;if(job)void settleExport('Asosiy oyna yopildi.');});
+  await main.loadURL(appUrl);
 });
 app.on('window-all-closed',()=>app.quit());

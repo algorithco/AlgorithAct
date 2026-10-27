@@ -1,6 +1,7 @@
-import type { EncodeSpec, ExportProgress, ExportRequest } from './index';
+import type { DesktopWindowControls, EncodeSpec, ExportProgress, ExportRequest } from './index';
 
 export interface DesktopBridge {
+  windowControls: DesktopWindowControls;
   openProject(): Promise<Uint8Array | null>;
   saveProject(bytes: Uint8Array, name: string): Promise<boolean>;
   writeRecovery(bytes: Uint8Array): Promise<void>;

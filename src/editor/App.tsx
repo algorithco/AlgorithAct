@@ -15,6 +15,7 @@ import './workspace.css';
 import './audio.css';
 import './redesign.css';
 import { AIWorkspace, WorkspaceModes, type WorkspaceMode } from './WorkspaceModes';
+import { CloseWindowDialog, WindowControls } from './WindowControls';
 
 function timecode(t:number,fps:number){const frames=Math.floor(t*fps/1000);return `${String(Math.floor(frames/fps/60)).padStart(2,'0')}:${String(Math.floor(frames/fps)%60).padStart(2,'0')}:${String(frames%fps).padStart(2,'0')}`;}
 const message=(e:unknown)=>(e instanceof Error?e.message:String(e)).replace(/(?:Error: )?Error invoking remote method '[^']+':\s*/g,'').replace(/^(?:Error:\s*)+/,'');
@@ -42,7 +43,10 @@ export function App({services}:{services:EditorServices}){
   const [selectedClip,setSelectedClip]=useState<string|null>(null),[selectedKey,setSelectedKey]=useState<KeySelection|null>(null);
   const [time,setTime]=useState(0),[playing,setPlaying]=useState(false),[loop,setLoop]=useState(true);
   const [tab,setTab]=useState<LibraryTab>('characters'),[libraryOpen,setLibraryOpen]=useState(false),[mode,setMode]=useState<'select'|'pose'|'pan'>('select'),[zoom,setZoom]=useState<number|null>(null),[autoKey,setAutoKey]=useState(true);
-  const [toast,setToast]=useState(''),[dialog,setDialog]=useState<'export'|'help'|'new'|'open'|null>(null),[exportFormat,setExportFormat]=useState<'png'|'mp4'|'webm'>(services.exportVideo?'webm':'png');
+  const [toast,setToast]=useState(''),[dialog,setDialog]=useState<'export'|'help'|'new'|'open'|'close'|null>(null),[exportFormat,setExportFormat]=useState<'png'|'mp4'|'webm'>(services.exportVideo?'webm':'png');
+  const [closing,setClosing]=useState(false);
+  const closingRef=useRef(false),closePendingRef=useRef(false);
+  const closeReturnDialog=useRef<'export'|'help'|'new'|'open'|null>(null);
   const [exportProgress,setExportProgress]=useState<ExportProgress|null>(null),[exporting,setExporting]=useState(false),[saving,setSaving]=useState(false),[exportError,setExportError]=useState('');
   const [recovery,setRecovery]=useState<ProjectBundle|null>(null),[autosave,setAutosave]=useState<'idle'|'saving'|'saved'|'error'>('idle');
   const [lastPath,setLastPath]=useState('transform.x');
@@ -57,6 +61,23 @@ export function App({services}:{services:EditorServices}){
   const hasAudio=audioClips.some(clip=>!clip.muted&&clip.gain>0);
   const waveforms=useMemo(()=>Object.fromEntries(audioClips.map(clip=>[clip.assetId,audioEngine.waveform(clip.assetId)])),[audioClips,audioEngine,audioVersion]);
   const notify=useCallback((value:string)=>setToast(value),[]);
+  const windowError=useCallback((error:unknown)=>notify(message(error)),[notify]);
+  const closeWindow=useCallback(async()=>{
+    if(!services.windowControls || closePendingRef.current)return;
+    closePendingRef.current=true;setClosing(true);
+    try{
+      // Finish recovery before unloading; beforeunload cannot await filesystem work.
+      // A confirmed discard can still close when recovery storage is unavailable.
+      if(store.isDirty())await services.storage.writeRecovery(currentBundle.current).catch(()=>{});
+      closingRef.current=true;
+      await services.windowControls.confirmClose();
+    }catch(error){closingRef.current=false;closePendingRef.current=false;setClosing(false);windowError(error);}
+  },[services,store,windowError]);
+  useEffect(()=>services.windowControls?.onCloseRequested(()=>{
+    if(closePendingRef.current)return;
+    setPlaying(false);
+    if(store.isDirty() || exporting || saving){if(dialog!=='close')closeReturnDialog.current=dialog;setDialog('close');}else void closeWindow();
+  }),[services,store,exporting,saving,dialog,closeWindow]);
   const changeWorkspace=(next:WorkspaceMode)=>{if(next===workspaceMode)return;setWorkspaceMode(next);setPlaying(false);setLibraryOpen(false);};
   const openLibrary=(next:LibraryTab)=>{setLibraryOpen(previous=>next===tab?!previous:true);setTab(next);};
   const select=(id:string|null)=>{if(id&&compact&&layersOpen){setLayersOpen(false);setInspectorOpen(true);}setSelected(id);store.selection=id;setSelectedClip(null);setSelectedKey(null);};
@@ -161,7 +182,7 @@ export function App({services}:{services:EditorServices}){
       }else{
         if(!services.exportVideo)throw new Error('Video eksporti desktop rejimida ishlaydi.');
         const handle=services.exportVideo({project,assets,presetId:exportFormat,sceneId},setExportProgress);exportRef.current=handle;
-        const output=await handle.done;if(output){notify('Video eksport qilindi');setDialog(null);}else notify('Eksport bekor qilindi');
+        const output=await handle.done;if(output){notify('Video eksport qilindi');setDialog(current=>current==='close'?current:null);}else notify('Eksport bekor qilindi');
       }
     }catch(e){setExportError(message(e));}finally{setExporting(false);exportRef.current=null;}
   }
@@ -193,6 +214,7 @@ export function App({services}:{services:EditorServices}){
   },[playing,loop,scene.durationMs,audioEngine,audioReady,audioVersion,hasAudio,notify]);
   useEffect(()=>{
     const listener=(event:KeyboardEvent)=>{
+      if(dialog==='close')return;
       if(workspaceMode!=='manual'||event.defaultPrevented)return;
       if(event.code==='Space' && event.target instanceof HTMLElement && event.target.closest('button,[role="button"]'))return;
       if(event.target instanceof HTMLElement && (['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)||event.target.isContentEditable))return;
@@ -217,8 +239,8 @@ export function App({services}:{services:EditorServices}){
       else if(event.shiftKey&&event.code==='Digit1'){event.preventDefault();fitView();}
     };window.addEventListener('keydown',listener);return()=>window.removeEventListener('keydown',listener);
   });
-  useEffect(()=>{const handler=(e:BeforeUnloadEvent)=>{if(store.isDirty()){void services.storage.writeRecovery(currentBundle.current);e.preventDefault();}};window.addEventListener('beforeunload',handler);return()=>window.removeEventListener('beforeunload',handler);},[store,services]);
-  return <div className="studio-app">
+  useEffect(()=>{const handler=(e:BeforeUnloadEvent)=>{if(!closingRef.current && store.isDirty()){void services.storage.writeRecovery(currentBundle.current);e.preventDefault();}};window.addEventListener('beforeunload',handler);return()=>window.removeEventListener('beforeunload',handler);},[store,services]);
+  return <div className={`studio-app${services.windowControls?' desktop-app':''}`}>
     <header className="app-header">
       <div className="header-identity"><div className="brand"><div className="brand-mark"><img className="brand-logo" src={`${import.meta.env.BASE_URL}brand/algorithact-icon.png`} alt="" aria-hidden="true"/></div><div>AlgorithAct<span>by Algorithco</span></div><span className="alpha-badge">ALPHA</span></div><div className="project-heading"><div className="project-title"><input aria-label="Loyiha nomi" disabled={workspaceMode==='ai'} value={project.meta.name} onChange={e=>{if(e.target.value.length)transact('Loyiha nomi',d=>{d.meta.name=e.target.value;},'project-name');}}/><span><i className={`save-dot ${store.isDirty()?'unsaved':''}`}/>{store.isDirty()?'Saqlanmagan o‘zgarishlar':'Barcha o‘zgarishlar saqlangan'}</span></div></div></div>
       <WorkspaceModes value={workspaceMode} onChange={changeWorkspace}/>
@@ -229,6 +251,7 @@ export function App({services}:{services:EditorServices}){
         <button className="save-button" aria-label="Loyihani saqlash" onClick={()=>void save()} disabled={saving||workspaceMode==='ai'}>{saving?<LoaderCircle className="spin" size={18}/>:<Save size={18}/>}Saqlash</button>
         <button className="export-button" disabled={workspaceMode==='ai'} onClick={()=>{setExportError('');setDialog('export');}}><ArrowUpRight size={18}/>Eksport</button>
       </div>
+      {services.windowControls&&<WindowControls controls={services.windowControls} onError={windowError}/>}
     </header>
     <main style={timelineHeight===null?undefined:{'--timeline-height':`${Math.min(maxTimelineHeight,timelineHeight)}px`} as CSSProperties} className={`workspace ${timelineCollapsed||focusMode?'timeline-collapsed':''} ${layersOpen?'layers-open':''} ${!inspectorVisible?'inspector-hidden':''} ${focusMode?'focus-mode':''}`} id="manual-workspace" role="tabpanel" tabIndex={0} aria-labelledby="manual-tab" hidden={workspaceMode!=='manual'} inert={workspaceMode!=='manual'}>
       <nav className="workspace-rail" aria-label="Yaratish vositalari">
@@ -261,7 +284,8 @@ export function App({services}:{services:EditorServices}){
     <input ref={audioInput} type="file" accept="audio/*,.wav,.mp3,.ogg,.oga,.m4a,.aac,.flac,.webm" className="hidden-input" aria-label="Audio fayli" onChange={e=>{void importAudio(e.target.files?.[0]);e.target.value='';}}/>
     {toast && <div className="toast" role="status"><Check size={16}/>{toast}<button aria-label="Xabarni yopish" onClick={()=>setToast('')}><X size={14}/></button></div>}
     {autosave==='error' && autosaveErrors.current>=3 && <div className="autosave-banner">Avtosaqlash ishlamayapti. Loyihani Ctrl+S orqali saqlang.</div>}
-    {(dialog||recovery) && <div className="modal-backdrop" onPointerDown={e=>{if(e.target===e.currentTarget&&!exporting&&!recovery)setDialog(null);}}><section className={`modal ${dialog==='help'?'help-modal':''}`} role="dialog" aria-modal="true" aria-label={recovery?'Loyihani tiklash':dialog==='export'?'Eksport sozlamalari':dialog==='help'?'Yordam':'Loyiha o‘zgarishlari'}>
+    {dialog==='close'&&<CloseWindowDialog name={project.meta.name} dirty={store.isDirty()} exporting={exporting} busy={closing||saving} onCancel={()=>setDialog(closeReturnDialog.current==='export'&&!exporting?null:closeReturnDialog.current)} onDiscard={()=>void closeWindow()} onSave={()=>{void(async()=>{if(await save()&&!store.isDirty())await closeWindow();})();}}/>}
+    {dialog!=='close'&&(dialog||recovery) && <div className="modal-backdrop" onPointerDown={e=>{if(e.target===e.currentTarget&&!exporting&&!recovery)setDialog(null);}}><section className={`modal ${dialog==='help'?'help-modal':''}`} role="dialog" aria-modal="true" aria-label={recovery?'Loyihani tiklash':dialog==='export'?'Eksport sozlamalari':dialog==='help'?'Yordam':'Loyiha o‘zgarishlari'}>
       <button className="modal-close" aria-label="Oynani yopish" disabled={exporting} onClick={()=>recovery?setRecovery(null):setDialog(null)}><X size={18}/></button>
       {recovery?<><div className="modal-symbol"><FolderOpen size={25}/></div><h2>Loyihani davom ettiramizmi?</h2><p>«{recovery.project.meta.name}» loyihasining avtosaqlangan nusxasi topildi.</p><div className="modal-actions"><button className="secondary-button" onClick={()=>{setRecovery(null);void services.storage.clearRecovery();}}>O‘tkazib yuborish</button><button className="primary-button" onClick={()=>{load(recovery);store.transact('Tiklangan loyiha',d=>{d.meta.modifiedAt=new Date().toISOString();});setRecovery(null);notify('Loyiha tiklandi');}}>Tiklash <ArrowUpRight size={15}/></button></div></>:dialog==='export'?<><div className="modal-eyebrow"><ArrowDownToLine size={14}/> NATIJANI ULASHING</div><h2>Sahnangiz tayyor.</h2><p>Animatsiyangizni faylga chiqaring.</p><label className="field-label">Format</label><div className="export-formats">{(['png','webm','mp4'] as const).map(format=><button key={format} className={exportFormat===format?'selected':''} disabled={exporting || (format!=='png'&&!services.exportVideo)} onClick={()=>setExportFormat(format)}><span>{format==='png'?<Camera size={20}/>:<Clapperboard size={20}/>}</span><strong>{format.toUpperCase()}</strong><small>{format==='png'?'Joriy kadr':format==='webm'?'VP9 video':'H.264 video'}</small>{exportFormat===format&&<Check size={13}/>}</button>)}</div><div className="export-details"><span>O‘lcham<strong>{project.settings.frame.width} × {project.settings.frame.height}</strong></span><span>{exportFormat==='png'?'Vaqt':'Davomiylik'}<strong>{exportFormat==='png'?`${(time/1000).toFixed(2)} s`:`${scene.durationMs/1000} s · ${project.settings.fps} FPS`}</strong></span></div><p className="export-note">{services.exportVideo?'Video eksporti ilova ichida tayyor. Yoqilgan audio kliplar video bilan birga saqlanadi.':'PNG eksporti brauzerda ishlaydi. MP4 va WebM uchun desktop ilovasini ishga tushiring.'}</p>{exportError&&<div className="export-error" role="alert"><CircleAlert size={19}/><div><strong>Eksport bajarilmadi</strong><p>{exportError}</p></div></div>}{exportProgress && <div className="export-progress"><span>{exportProgress.stage==='mixing'?'Audio tayyorlanmoqda…':exportProgress.stage==='finalizing'?'Fayl yakunlanmoqda…':`${exportProgress.frame} / ${exportProgress.total} kadr`} <strong>{Math.round(exportProgress.progress*100)}%</strong></span><progress max="1" value={exportProgress.progress}/></div>}<div className="modal-actions">{exporting?<button className="secondary-button" onClick={()=>exportRef.current?.cancel()}>Bekor qilish</button>:<button className="secondary-button" onClick={()=>setDialog(null)}>Orqaga</button>}<button className="primary-button" onClick={()=>void doExport()} disabled={exporting}>{exporting?<LoaderCircle className="spin" size={16}/>:<Download size={16}/>} {exporting?'Eksport qilinmoqda…':'Eksport qilish'}</button></div></>:dialog==='help'?<><div className="modal-eyebrow"><Sparkles size={14}/> ALGORITHACT</div><h2>G‘oyangizni harakatlantiring.</h2><p>Personaj tanlang, harakat qo‘shing va timeline’da hikoyangizni yarating.</p><div className="shortcut-list">{[['F','Fokus rejimi'],['L','Qatlamlar paneli'],['I','Xususiyatlar paneli'],['Shift + 1','Sahnani sig‘dirish'],['V','Tanlash va ko‘chirish'],['P','Personaj pozasi'],['H','Sahnani surish'],['K','Tanlangan xususiyatga kalit'],['Space','Ijro / pauza'],['← →','Bitta kadr oldinga / orqaga'],['Ctrl + Z','Bekor qilish'],['Ctrl + Shift + Z','Qaytarish'],['Ctrl + S','Loyihani saqlash'],['Ctrl + O','Loyiha ochish'],['Delete','Kalit, klip yoki obyektni o‘chirish']].map(([key,label])=><div key={key}><span>{label}</span><kbd>{key}</kbd></div>)}</div><p className="software-credits">Video eksport: FFmpeg · LGPLv3+. Litsenziya va manba ma’lumotlari ilovaning resources/ffmpeg papkasida.</p></>:<><div className="modal-symbol"><Save size={25}/></div><h2>O‘zgarishlarni saqlang</h2><p>Joriy loyihada saqlanmagan o‘zgarishlar bor. Davom etishdan oldin .anim nusxasini saqlashingiz mumkin.</p><div className="modal-actions"><button className="secondary-button" onClick={()=>{const next=dialog;setDialog(null);if(next==='new')newProject();else void open();}}>Saqlamasdan davom etish</button><button className="primary-button" onClick={()=>{const next=dialog;void(async()=>{if(await save()){setDialog(null);if(next==='new')newProject();else await open();}})();}}>Saqlash</button></div></>}
     </section></div>}

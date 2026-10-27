@@ -15,6 +15,7 @@ export const services:EditorServices={
   createRenderer:purpose=>new PixiRenderer(purpose==='export'),
   createAudioEngine:()=>new WebAudioEngine(),
   storage:bridge?new DesktopStorage(bridge):new BrowserStorage(),
+  windowControls:bridge?.windowControls,
   resolver:createResolver,createId:ulid,createProject:()=>createDemoProject(ulid,new Date().toISOString()),
   importImage,saveImage:download,
   async importAudio(file,id){const result=await readAudioFile(file,id);result.asset.meta=await inspectAudio(result.bytes);return result;},

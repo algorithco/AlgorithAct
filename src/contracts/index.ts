@@ -52,6 +52,16 @@ export interface AudioEngine {
   renderOffline(project: Project, sceneId: Id, assets: AssetResolver, durationMs: number, signal: AbortSignal): Promise<Uint8Array | undefined>;
   dispose(): void;
 }
+export interface DesktopWindowState { maximized: boolean }
+export interface DesktopWindowControls {
+  getState(): Promise<DesktopWindowState>;
+  minimize(): Promise<void>;
+  toggleMaximize(): Promise<DesktopWindowState>;
+  requestClose(): Promise<void>;
+  confirmClose(): Promise<void>;
+  onStateChange(callback: (state: DesktopWindowState) => void): () => void;
+  onCloseRequested(callback: () => void): () => void;
+}
 export interface EditorServices {
   evaluator: Evaluator;
   createRenderer(purpose?:'preview'|'export'): Renderer;
@@ -63,6 +73,7 @@ export interface EditorServices {
   importImage(file: File, id: string): Promise<{ asset: AssetRef; bytes: Uint8Array }>;
   importAudio(file: File, id: string): Promise<{ asset: AssetRef; bytes: Uint8Array }>;
   saveImage(blob: Blob, name: string): void;
+  windowControls?: DesktopWindowControls;
   exportVideo?: (request: ExportRequest, onProgress: (p: ExportProgress) => void) => ExportHandle;
 }
 export interface EntityKindDef {

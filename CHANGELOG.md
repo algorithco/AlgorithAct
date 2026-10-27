@@ -23,6 +23,7 @@ Version 0.1.0 is the first desktop alpha for Windows, macOS and Linux.
 - Windows x64 NSIS installer; macOS Intel/Apple Silicon DMG/ZIP; Linux x64/ARM64 AppImage/tar packages.
 - Native media tools built from checksum-pinned FFmpeg, OpenH264, libvpx and Opus sources, with matching source archives and licenses.
 - Five-platform native audio/video and packaged export checks, release completeness validation and SHA-256 checksums.
+- Supported Electron 45 runtime for the first desktop distribution.
 - Unit/property, browser, native and packaged tests, golden frames and benchmark records.
 
 AI Build remains a placeholder. Windows ARM64, publisher signing, project fonts, scene-settings UX and remaining performance/recovery gates are on the [roadmap](docs/ROADMAP.md).

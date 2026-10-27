@@ -22,7 +22,7 @@ npm start
 
 `package:desktop` builds the renderer, main/preload and notices, verifies the native media runtime, and stages only built files and licenses. `installer:desktop` additionally creates the native installers in `release/installer/`. The unpacked application is in `release/AlgorithAct-<platform>-<arch>/`; on macOS the executable is inside `AlgorithAct.app/Contents/MacOS/`. Source maps, development dependencies and user projects are excluded. Native tools remain outside `app.asar`.
 
-Source-built media tools have no third-party shared runtime dependencies; Linux still requires its system C/C++ libraries. Linux packages target glibc 2.39+; macOS packages target macOS 12+. Windows ARM64 and 32-bit packages are not part of 0.1.0.
+Source-built media tools have no third-party shared runtime dependencies; Linux still requires its system C/C++ libraries. Linux packages target glibc 2.39+; Electron 45 requires macOS 13+. Windows ARM64 and 32-bit packages are not part of 0.1.0.
 
 ## GitHub publication
 

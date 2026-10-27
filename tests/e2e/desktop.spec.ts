@@ -23,7 +23,7 @@ for(const preset of ['webm','mp4'] as const)test(`Electron exports real ${preset
     for(const entity of Object.values(project.scenes[project.sceneOrder[0]].entities)){if(entity.kind==='camera'){entity.x/=3;entity.y/=3;}else{entity.transform.x/=3;entity.transform.y/=3;entity.transform.scaleX/=3;entity.transform.scaleY/=3;}}
     const result=await page.evaluate(async request=>window.studioDesktop!.requestExport(request),{project,assets:{},sceneId:project.sceneOrder[0],presetId:preset});
     expect(result).toBe(output);expect((await stat(output)).size).toBeGreaterThan(1000);
-    const probe=process.env.ANIM_FFPROBE_PATH??resolve(dirname(process.env.ANIM_FFMPEG_PATH!),'ffprobe.exe');
+    const probe=process.env.ANIM_FFPROBE_PATH??resolve(dirname(process.env.ANIM_FFMPEG_PATH!),process.platform==='win32'?'ffprobe.exe':'ffprobe');
     const data=JSON.parse(execFileSync(probe,['-v','error','-count_frames','-show_entries','stream=width,height,nb_read_frames:format=duration','-of','json',output],{encoding:'utf8',windowsHide:true}));
     expect(data.streams[0].nb_read_frames).toBe('30');expect(data.streams[0].width).toBe(640);expect(Number(data.format.duration)).toBeCloseTo(1,1);
     await page.screenshot({path:'.qa/desktop.png'});
@@ -63,7 +63,7 @@ for(const preset of ['webm','mp4'] as const)test(`Electron exports ${preset} wit
     scene.timeline.clips.sound={id:'sound',kind:'audio',assetId:'sound',startMs:250,durationMs:500,trimInMs:200,gain:.5,fadeInMs:50,fadeOutMs:50,lane:0,muted:false,extensions:{}};
     const result=await page.evaluate(async payload=>window.studioDesktop!.requestExport({project:payload.project,assets:{sound:new Uint8Array(payload.wav)},sceneId:payload.project.sceneOrder[0],presetId:payload.preset}),{project,wav:Array.from(wav),preset});
     expect(result).toBe(output);
-    const probe=process.env.ANIM_FFPROBE_PATH??resolve(dirname(process.env.ANIM_FFMPEG_PATH!),'ffprobe.exe');
+    const probe=process.env.ANIM_FFPROBE_PATH??resolve(dirname(process.env.ANIM_FFMPEG_PATH!),process.platform==='win32'?'ffprobe.exe':'ffprobe');
     const data=JSON.parse(execFileSync(probe,['-v','error','-count_frames','-show_entries','stream=codec_type,codec_name,width,height,nb_read_frames,sample_rate,channels,start_time:format=duration','-of','json',output],{encoding:'utf8',windowsHide:true}));
     const video=data.streams.find((s:{codec_type:string})=>s.codec_type==='video'),audio=data.streams.find((s:{codec_type:string})=>s.codec_type==='audio');
     expect(video.nb_read_frames).toBe('30');expect(audio.sample_rate).toBe('48000');expect(audio.channels).toBe(2);expect(audio.codec_name).toBe(preset==='mp4'?'aac':'opus');expect(Math.abs(Number(data.format.duration)-1)).toBeLessThan(1/30+.001);

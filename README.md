@@ -7,7 +7,7 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-f5d900?labelColor=171717" alt="MIT license" /></a>
   <img src="https://img.shields.io/badge/status-alpha-f5d900?labelColor=171717" alt="Alpha software" />
-  <img src="https://img.shields.io/badge/desktop-Windows_x64-eeeeee?labelColor=171717" alt="Windows x64" />
+  <img src="https://img.shields.io/badge/desktop-Windows_%7C_macOS_%7C_Linux-eeeeee?labelColor=171717" alt="Windows, macOS and Linux" />
   <a href="https://github.com/algorithco/AlgorithAct/actions/workflows/ci.yml"><img src="https://github.com/algorithco/AlgorithAct/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
 </p>
 
@@ -17,7 +17,21 @@
 
 AlgorithAct brings characters, reusable motions, keyframes, text, images and audio into one local workspace. Animate a scene, save everything in a portable `.anim` project, and export a still frame or a video with sound. Editing runs locally and does not require an account or a cloud service.
 
-**Version 0.1.0 is an early alpha.** The interface is currently in Uzbek. Windows x64 is the validated desktop target. **AI Build is a coming-soon screen; AI generation is not implemented.** See the [roadmap](docs/ROADMAP.md) for current limitations.
+**Version 0.1.0 is an early alpha.** The interface is currently in Uzbek. Desktop packages target Windows x64, macOS Intel/Apple Silicon and Linux x64/ARM64. **AI Build is a coming-soon screen; AI generation is not implemented.** See the [roadmap](docs/ROADMAP.md) for current limitations.
+
+## Download the desktop app
+
+Get installers, portable packages and checksums from [the 0.1.0 release](https://github.com/algorithco/AlgorithAct/releases/tag/v0.1.0):
+
+| System | Downloads |
+| --- | --- |
+| Windows x64 | [Installer](https://github.com/algorithco/AlgorithAct/releases/download/v0.1.0/AlgorithAct-Setup-0.1.0-x64.exe) |
+| macOS Apple Silicon | [DMG](https://github.com/algorithco/AlgorithAct/releases/download/v0.1.0/AlgorithAct-0.1.0-macOS-arm64.dmg) |
+| macOS Intel | [DMG](https://github.com/algorithco/AlgorithAct/releases/download/v0.1.0/AlgorithAct-0.1.0-macOS-x64.dmg) |
+| Linux x64 | [AppImage](https://github.com/algorithco/AlgorithAct/releases/download/v0.1.0/AlgorithAct-0.1.0-Linux-x64.AppImage) |
+| Linux ARM64 | [AppImage](https://github.com/algorithco/AlgorithAct/releases/download/v0.1.0/AlgorithAct-0.1.0-Linux-arm64.AppImage) |
+
+Packages include the video tools and run without Node.js. ZIP/tar alternatives, system requirements and unsigned-alpha details are in the [release notes](docs/releases/0.1.0.md).
 
 ## What you can make
 
@@ -46,7 +60,7 @@ npm run dev:desktop
 
 For the browser development preview, run `npm run dev` and open `http://127.0.0.1:5173`. Browser mode supports editing and PNG export; MP4/WebM export requires the desktop app.
 
-Editing and PNG export need no FFmpeg setup. To enable desktop video export or build the Windows package, prepare the pinned Windows x64 runtime once:
+Editing and PNG export need no FFmpeg setup. Windows developers can prepare the legacy pinned Windows x64 runtime once:
 
 ```sh
 npm run prepare:ffmpeg -- --download
@@ -55,7 +69,19 @@ npm run dev:desktop
 
 This explicitly downloads a checksum-verified archive from a pinned upstream GitHub release. For an offline build, use `npm run prepare:ffmpeg -- /path/to/the/pinned/archive.zip`. See the [FFmpeg runtime guide](resources/ffmpeg/README.md) for version, hashes, source links and overrides.
 
-## Build the Windows app
+## Build desktop apps
+
+The release workflow builds on each native OS. With the [compiler prerequisites](resources/ffmpeg/README.md) installed, run on Windows x64, macOS or Linux:
+
+```sh
+npm run build:ffmpeg
+npm run installer:desktop
+npm start
+```
+
+`release/installer/` contains Windows NSIS, macOS DMG/ZIP or Linux AppImage/tar packages. See [building and releases](docs/BUILDING.md) for the native build matrix and release process.
+
+### Existing Windows developer package
 
 On Windows x64, after preparing FFmpeg:
 
@@ -70,7 +96,7 @@ Output: `release/AlgorithAct-win32-x64/AlgorithAct.exe`. Keep the entire applica
 npm run installer:win
 ```
 
-Output: `release/installer/AlgorithAct-Setup-0.1.0-x64.exe`. Local builds are unsigned unless a maintainer configures signing. Source publication does not imply a downloadable binary release. Node.js is needed to build the app, not to run a packaged copy. See [building and releases](docs/BUILDING.md).
+Output: `release/installer/AlgorithAct-Setup-0.1.0-x64.exe`. Local builds are unsigned unless a maintainer configures signing. Node.js is needed to build the app, not to run a packaged copy. The release workflow uses the source-built runtime for every platform.
 
 ## Learn the workspace
 
@@ -122,6 +148,6 @@ Use [GitHub Issues](https://github.com/algorithco/AlgorithAct/issues) for bugs a
 
 ## License and credits
 
-AlgorithAct's original source and project materials use the [MIT License](LICENSE). Third-party components retain their licenses: Geist fonts use SIL OFL 1.1; the selected FFmpeg build uses LGPL-3.0-or-later; Electron/Chromium and JavaScript dependencies ship their notices. See [third-party notices](THIRD_PARTY_NOTICES.md).
+AlgorithAct's original source and project materials use the [MIT License](LICENSE). Third-party components retain their licenses: Geist fonts use SIL OFL 1.1; release FFmpeg builds use LGPL-2.1-or-later; Electron/Chromium and JavaScript dependencies ship their notices. See [third-party notices](THIRD_PARTY_NOTICES.md).
 
 Built by [Algorithco](https://github.com/algorithco) and contributors.

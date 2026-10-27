@@ -10,11 +10,11 @@ Close an earlier AlgorithAct development server before launching another. Vite u
 
 ## `npm start` cannot find the app
 
-`npm start` launches the packaged Windows executable. Run `npm run package:win` first, or use `npm run dev:desktop` for development.
+`npm start` launches the packaged executable for the current OS and processor. Run `npm run package:desktop` first, or use `npm run dev:desktop` for development.
 
 ## Packaging says FFmpeg is missing or has a checksum mismatch
 
-Run `npm run prepare:ffmpeg -- --download` on Windows x64 or supply the exact [pinned local archive](../resources/ffmpeg/README.md). Rolling `latest` archives can change and are intentionally rejected. Do not change hashes to accept an unknown download. Windows ARM64 and other platforms need separately validated bundles.
+For released packages, reinstall the complete download for your OS and processor. For source builds, install the [native compiler prerequisites](../resources/ffmpeg/README.md) and run `npm run build:ffmpeg`. Windows x64 developers can also use `npm run prepare:ffmpeg -- --download` for the legacy pinned runtime. Changed source/binary hashes are rejected. Windows ARM64 has no native package in 0.1.0.
 
 ## MP4/WebM export is unavailable or cannot start
 

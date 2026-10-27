@@ -1,6 +1,34 @@
 # FFmpeg runtime
 
-Windows x64 packages carry FFmpeg, FFprobe and seven shared DLLs in `resources/ffmpeg/win32-x64/`, outside `app.asar`. Executables and DLLs are ignored by Git; the manifest, licenses, build configuration and notice are committed.
+Release packages carry native FFmpeg and FFprobe executables in `resources/ffmpeg/<platform>-<arch>/`, outside `app.asar`. Windows x64, macOS x64/ARM64 and Linux x64/ARM64 use the same pinned source revisions and build script. Generated binaries and manifests are ignored by Git.
+
+## Build the release runtime from source
+
+Install native build tools:
+
+- Linux: C/C++ compiler, Make, CMake, NASM, pkg-config and tar (`sudo apt-get install build-essential cmake nasm pkg-config`).
+- macOS: Xcode command line tools, CMake, NASM and pkg-config (`brew install cmake nasm pkgconf`).
+- Windows x64: MSYS2 MINGW64 with `make`, `diffutils`, `mingw-w64-x86_64-gcc`, `mingw-w64-x86_64-cmake`, `mingw-w64-x86_64-pkgconf` and `mingw-w64-x86_64-nasm`. Run the command in the MINGW64 shell with Node.js on PATH.
+
+```sh
+npm run build:ffmpeg
+```
+
+[sources.json](sources.json) pins full upstream commits and archive SHA-256 hashes for FFmpeg, OpenH264 2.6.0, libvpx 1.15.2 and Opus 1.5.2. The downloader verifies each source archive before extraction. Sources are cached in `.qa/ffmpeg-sources/`; verified local archives can be supplied there for offline rebuilding. The compiler builds static codec libraries and standalone FFmpeg/FFprobe, without GPL/nonfree options or network support. The enabled media formats cover the app's H.264/VP9/AAC/Opus export and audio verification paths.
+
+Each target gets `BUILD-MANIFEST.json` with executable sizes/hashes and the source-lock digest, `SOURCE-BUILD.txt` with configuration/provenance, and `LICENSES/` with FFmpeg and codec licenses and patent notices. Packaging rejects changed binaries or a stale source lock. Only that target's runtime is copied into the application.
+
+To preserve the complete matching source material:
+
+```sh
+node tools/build-ffmpeg.mjs --sources-only
+```
+
+This creates `release/installer/AlgorithAct-FFmpeg-Sources-<version>.tar.gz` containing the original archives, source lock and both build scripts. The GitHub release workflow attaches this archive beside all installers and includes it in `SHA256SUMS.txt`. To rebuild, use the tagged app source, extract the source-material archive into the checkout, install the prerequisites above and run `npm run build:ffmpeg`; cached archives are verified and reused. The build scripts are also available at [build-ffmpeg.mjs](../../tools/build-ffmpeg.mjs) and [compile-ffmpeg.sh](../../tools/compile-ffmpeg.sh).
+
+## Legacy Windows developer runtime
+
+The optional BtbN Windows x64 runtime carries FFmpeg, FFprobe and seven shared DLLs. It is retained for existing developer commands and the original Windows CI. Published cross-platform packages use the source-built runtime above.
 
 ## Prepare
 
@@ -49,4 +77,4 @@ Keep [COPYING.LGPLv3](win32-x64/COPYING.LGPLv3), [COPYING.GPLv3](win32-x64/COPYI
 
 Sources: [FFmpeg revision](https://github.com/FFmpeg/FFmpeg/tree/31855b2a70), [BtbN build/dependency scripts](https://github.com/BtbN/FFmpeg-Builds), [FFmpeg licensing](https://ffmpeg.org/legal.html). Before distributing installers, preserve the corresponding dependency sources, scripts and any required notices/source offers as described in [building and releases](../../docs/BUILDING.md) and [third-party notices](../../THIRD_PARTY_NOTICES.md).
 
-There is currently no pinned runtime for Windows ARM64, macOS or Linux. Adding a platform requires a verified manifest, license/source materials and native export tests.
+Windows ARM64 does not yet have a release source-build configuration. macOS/Linux releases use the pinned native source builds above.

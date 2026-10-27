@@ -10,7 +10,21 @@
 
 AlgorithAct personaj, tayyor harakat, keyframe, matn, rasm va audioni bitta lokal ish maydonida birlashtiradi. Loyihani aktivlari bilan `.anim` faylida saqlash, PNG kadr yoki ovozli video eksport qilish mumkin. Tahrirlash uchun akkaunt va bulut xizmati talab qilinmaydi.
 
-**Loyiha hali alpha bosqichida.** Interfeys o‘zbekcha. Windows x64 desktop muhiti tekshirilgan. **AI Build hozircha “Tez kunda” sahifasi; AI generatsiyasi mavjud emas.** macOS/Linux paketlari va to‘liq V1 uchun ishlar [yo‘l xaritasida](docs/ROADMAP.md).
+**Loyiha hali alpha bosqichida.** Interfeys o‘zbekcha. Desktop paketlari Windows x64, macOS Intel/Apple Silicon va Linux x64/ARM64 uchun yaratiladi. **AI Build hozircha “Tez kunda” sahifasi; AI generatsiyasi mavjud emas.** Qolgan ishlar [yo‘l xaritasida](docs/ROADMAP.md).
+
+## Yuklab olish
+
+[0.1.0 relizi](https://github.com/algorithco/AlgorithAct/releases/tag/v0.1.0) sahifasida Windows installer, macOS DMG/ZIP va Linux AppImage/tar paketlari bor. Qurilmangiz protsessoriga mos x64 yoki arm64 variantini tanlang. FFmpeg/FFprobe paket ichida; Node.js o‘rnatish shart emas. Bu dastlabki alpha, installerlar publisher sertifikatisiz tarqatiladi. [Reliz tafsilotlari](docs/releases/0.1.0.md).
+
+Native kompilyator vositalari o‘rnatilgan Windows x64, macOS va Linux tizimlarida paket yaratish:
+
+```sh
+npm run build:ffmpeg
+npm run installer:desktop
+npm start
+```
+
+[FFmpeg build talablari](resources/ffmpeg/README.md) va [reliz qo‘llanmasi](docs/BUILDING.md) bilan tanishing.
 
 ## Imkoniyatlar
 

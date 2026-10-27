@@ -20,13 +20,15 @@ The UI fonts in `public/fonts/` use **SIL OFL 1.1**. Copyright (c) 2023 Vercel, 
 
 ## FFmpeg and FFprobe
 
-Windows uses the unmodified BtbN **LGPL shared** build identified in [win32-x64.json](resources/ffmpeg/win32-x64.json), FFmpeg revision `31855b2a70`. The tools run as external processes and can be replaced through documented environment variables. Executables and DLLs remain outside `app.asar`.
+Release packages build FFmpeg/FFprobe from the unmodified, checksum-pinned [FFmpeg, OpenH264, libvpx and Opus sources](resources/ffmpeg/sources.json). FFmpeg is configured under LGPL-2.1-or-later without GPL or nonfree options; codecs retain their BSD licenses and patent notices. The tools run as replaceable external processes outside `app.asar`. Every package includes `LICENSES/`, `SOURCE-BUILD.txt` and a binary checksum manifest. The release includes the complete corresponding source archives and build scripts as `AlgorithAct-FFmpeg-Sources-<version>.tar.gz`.
+
+The optional legacy Windows developer runtime is the unmodified BtbN **LGPL shared** build identified in [win32-x64.json](resources/ffmpeg/win32-x64.json), FFmpeg revision `31855b2a70`.
 
 Preserve the accompanying [LGPL text](resources/ffmpeg/win32-x64/COPYING.LGPLv3), [GPL text](resources/ffmpeg/win32-x64/COPYING.GPLv3), [NOTICE.txt](resources/ffmpeg/win32-x64/NOTICE.txt) and [BUILD-CONFIG.txt](resources/ffmpeg/win32-x64/BUILD-CONFIG.txt).
 
 Source/build references: [FFmpeg revision](https://github.com/FFmpeg/FFmpeg/tree/31855b2a70), [BtbN scripts](https://github.com/BtbN/FFmpeg-Builds) and [FFmpeg licensing](https://ffmpeg.org/legal.html). FFmpeg dependencies and codecs retain their conditions. Shipping a GPL text does not mean GPL build options are enabled; the checked-in configuration identifies this build.
 
-Before publishing installers, preserve corresponding FFmpeg/dependency sources, build scripts and any source offers/materials required for that distribution. Upstream links and hashes identify the build but are not, alone, a complete source-distribution package. Follow the [release checklist](docs/BUILDING.md). Initial source publication does not publish FFmpeg binaries or an installer.
+The release workflow preserves matching FFmpeg/dependency sources and build scripts alongside the installers. Follow the [release checklist](docs/BUILDING.md) when changing media dependencies or the distribution process.
 
 ## Artwork and research
 

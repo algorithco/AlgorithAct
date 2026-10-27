@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -7,7 +7,17 @@ const script = fileURLToPath(import.meta.url);
 const root = resolve(dirname(script), '..');
 const sizes = [16, 20, 24, 32, 40, 48, 64, 96, 128, 192, 256];
 
-if (process.platform !== 'win32') {
+if (process.platform === 'darwin') {
+  const iconset = join(root, '.qa', 'algorithact.iconset');
+  await mkdir(iconset, { recursive: true });
+  for (const size of [16, 32, 128, 256, 512]) {
+    for (const scale of [1, 2]) {
+      execFileSync('sips', ['-z', String(size * scale), String(size * scale), join(root, 'public/brand/algorithact-desktop.png'), '--out', join(iconset, `icon_${size}x${size}${scale === 2 ? '@2x' : ''}.png`)], { stdio: 'ignore' });
+    }
+  }
+  execFileSync('iconutil', ['-c', 'icns', iconset, '-o', join(root, 'public/brand/algorithact.icns')]);
+  console.log('macOS application icon built.');
+} else if (process.platform !== 'win32') {
   console.log('Using checked-in desktop icons. Regenerate Windows icon assets on Windows.');
 } else if (!process.versions.electron) {
   const { default: electron } = await import('electron');

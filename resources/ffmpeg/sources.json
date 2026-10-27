@@ -1,0 +1,26 @@
+[
+  {
+    "name": "ffmpeg",
+    "repository": "FFmpeg/FFmpeg",
+    "revision": "31855b2a7051d07a370984f5e4029826db06be1d",
+    "sha256": "58c02a4c63196fcd6b7dd39e0cbdb76c4e24eeb05570f83eb9d6f9033ff4e3e1"
+  },
+  {
+    "name": "openh264",
+    "repository": "cisco/openh264",
+    "revision": "652bdb7719f30b52b08e506645a7322ff1b2cc6f",
+    "sha256": "7a060916a9fcb63ba51d83a4f2388660c0b58797be547c4fa5c52e8d65660a85"
+  },
+  {
+    "name": "libvpx",
+    "repository": "webmproject/libvpx",
+    "revision": "d168454ecd099805c675d4a98c66f4891373302a",
+    "sha256": "5f6519823db1cc67fba023dc5dcf33abcd3fbab65d7e3c6f1d8ff00917a8c1c6"
+  },
+  {
+    "name": "opus",
+    "repository": "xiph/opus",
+    "revision": "ddbe48383984d56acd9e1ab6a090c54ca6b735a6",
+    "sha256": "18e9d9e26565e279753aafb6823a482ef85ea9fddbfdcdbff8fd095b12dd96b6"
+  }
+]

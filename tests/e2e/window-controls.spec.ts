@@ -33,7 +33,8 @@ test('custom controls minimize, maximize, restore and follow native window state
   test.setTimeout(60000);
   const { application, page } = await launchEditor();
   try {
-    expect(await application.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].isMenuBarVisible())).toBe(false);
+    // macOS has an application-wide menu; this window API applies to Windows/Linux.
+    if (process.platform !== 'darwin') expect(await application.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].isMenuBarVisible())).toBe(false);
     expect(await page.locator('.app-header').evaluate(element => getComputedStyle(element).getPropertyValue('-webkit-app-region'))).toBe('drag');
     expect(await page.getByRole('button', { name: 'Ilovani yopish', exact: true }).evaluate(element => getComputedStyle(element).getPropertyValue('-webkit-app-region'))).toBe('no-drag');
     await page.getByRole('button', { name: 'Oynani kattalashtirish', exact: true }).click();
@@ -162,7 +163,7 @@ test('confirmed discard still exits when recovery storage fails', async () => {
 });
 
 test('window controls work over export dialogs and closing stops the encoder safely', async () => {
-  test.skip(!existsSync('resources/ffmpeg/win32-x64/ffmpeg.exe') && !process.env.ANIM_FFMPEG_PATH, 'Prepare FFmpeg before testing native video export.');
+  test.skip(!existsSync(`resources/ffmpeg/${process.platform}-${process.arch}/ffmpeg${process.platform==='win32'?'.exe':''}`) && !process.env.ANIM_FFMPEG_PATH, 'Prepare FFmpeg before testing native video export.');
   test.setTimeout(60000);
   const { application, page, profile, child } = await launchEditor();
   try {

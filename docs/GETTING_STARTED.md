@@ -7,11 +7,11 @@
 | Node.js | 24 LTS recommended; 22.12+ on the 22.x line is also supported |
 | Package installation | npm and the checked-in `package-lock.json` |
 | Source checkout | Git |
-| Validated desktop target | Windows x64 |
+| Desktop targets | Windows x64; macOS Intel/Apple Silicon; Linux x64/ARM64 |
 | Video export | The pinned FFmpeg/FFprobe runtime, or compatible explicit developer tools |
 | Browser tests | Chrome; see [testing](TESTING.md) |
 
-Dependency installation needs internet access. Editing, saving and rendering use local resources after installation. macOS/Linux can be used for engine and web development, but packaged desktop support has not been validated there.
+Download a packaged app from [GitHub Releases](https://github.com/algorithco/AlgorithAct/releases/tag/v0.1.0); it includes its runtime and video tools. For source development, dependency installation needs internet access. Editing, saving and rendering use local resources after installation. See [release notes](releases/0.1.0.md) for OS requirements and alpha limitations.
 
 ## Install and launch
 
@@ -32,7 +32,11 @@ npm run dev
 
 Open `http://127.0.0.1:5173`. Desktop file dialogs and video export are not available in web mode; `.anim` open/download, browser recovery and PNG export are available.
 
-## Enable Windows video export
+## Enable video export from source
+
+On macOS/Linux, or to reproduce a release runtime on Windows x64, install the [native compiler prerequisites](../resources/ffmpeg/README.md), then run `npm run build:ffmpeg`. To make your platform's installer, run `npm run installer:desktop`.
+
+Windows x64 developers can alternatively use the legacy pinned runtime:
 
 ```sh
 npm run prepare:ffmpeg -- --download
@@ -50,4 +54,4 @@ See [runtime details](../resources/ffmpeg/README.md). Restart desktop developmen
 
 Select the character, choose a motion under **Harakat**, and press `Space`. Scrub the timeline, enable **Avto-kalit**, then drag a pose handle with `P` or edit a transform in **Xususiyatlar**. Choose **Saqlash** to create a `.anim` file. In **Eksport**, choose PNG for the current frame or MP4/WebM for the scene in the desktop app.
 
-Continue with the [user guide](USER_GUIDE.md), [development guide](DEVELOPMENT.md) or [Windows build instructions](BUILDING.md).
+Continue with the [user guide](USER_GUIDE.md), [development guide](DEVELOPMENT.md) or [desktop build instructions](BUILDING.md).
